@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using QuanLySinhVien.DataAccess.Data;
+using QuanLySinhVien.Models;
 
 namespace QuanLySinhVien.Areas.Admin
 {
@@ -21,13 +16,64 @@ namespace QuanLySinhVien.Areas.Admin
 
         public async Task<IActionResult> Index()
         {
-            var khoas = await _context.khoas.ToListAsync();
+            var khoas = await _context.khoas
+                .AsNoTracking()
+                .OrderBy(khoa => khoa.TenKhoa)
+                .ToListAsync();
             return View(khoas);
+        }
+
+        public async Task<IActionResult> Upsert(int? id)
+        {
+            if (id is null)
+            {
+                return View(new Khoa());
+            }
+
+            var khoa = await _context.khoas.FindAsync(id);
+            if (khoa is null)
+            {
+                return NotFound();
+            }
+
+            return View(khoa);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert(Khoa khoa)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(khoa);
+            }
+
+            var isNewKhoa = khoa.MaKhoa == 0;
+            if (isNewKhoa)
+            {
+                _context.khoas.Add(khoa);
+                TempData["Success"] = "Đã thêm khoa mới.";
+            }
+            else
+            {
+                var existingKhoa = await _context.khoas.FindAsync(khoa.MaKhoa);
+                if (existingKhoa is null)
+                {
+                    return NotFound();
+                }
+
+                existingKhoa.TenKhoa = khoa.TenKhoa;
+                existingKhoa.MoTa = khoa.MoTa;
+                TempData["Success"] = "Đã cập nhật thông tin khoa.";
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
         #region CALL API
         public async Task<IActionResult> GetAll()
         {
-            var khoas = await _context.khoas.ToListAsync();
+            var khoas = await _context.khoas.AsNoTracking().ToListAsync();
             return Json(new { data = khoas });
         }
         #endregion

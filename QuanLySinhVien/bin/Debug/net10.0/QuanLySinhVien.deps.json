@@ -12,7 +12,6 @@
           "Microsoft.EntityFrameworkCore.Design": "10.0.11",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0",
           "QuanLySinhVien.Business": "1.0.0",
-          "QuanLySinhVien.DataAccess": "1.0.0",
           "QuanLySinhVien.Models": "1.0.0"
         },
         "runtime": {

@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IKhoaService,KhoaService>();
 var app = builder.Build();
 

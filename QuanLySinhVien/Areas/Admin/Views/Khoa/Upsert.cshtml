@@ -1,0 +1,47 @@
+@model QuanLySinhVien.Models.Khoa
+
+@{
+    var isNewKhoa = Model.MaKhoa == 0;
+    ViewData["Title"] = isNewKhoa ? "Thêm khoa mới" : "Cập nhật khoa";
+}
+
+<section class="faculty-form-page">
+    <a class="back-link" asp-area="Admin" asp-controller="Khoa" asp-action="Index">← Quay lại danh sách khoa</a>
+
+    <div class="faculty-form-card">
+        <div class="form-heading">
+            <span class="form-heading-icon">@(isNewKhoa ? "+" : "✎")</span>
+            <div>
+                <p class="eyebrow">QUẢN LÝ KHOA</p>
+                <h1>@ViewData["Title"]</h1>
+                <p>@(isNewKhoa ? "Điền thông tin để thêm một khoa vào hệ thống." : "Chỉnh sửa thông tin của khoa đã chọn.")</p>
+            </div>
+        </div>
+
+        <form method="post" class="faculty-form" novalidate>
+            <input asp-for="MaKhoa" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-4">
+                <label asp-for="TenKhoa" class="form-label">Tên khoa <span class="text-danger">*</span></label>
+                <input asp-for="TenKhoa" class="form-control" placeholder="Ví dụ: Công nghệ thông tin" autofocus="@isNewKhoa" />
+                <span asp-validation-for="TenKhoa" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="MoTa" class="form-label">Mô tả <span class="text-danger">*</span></label>
+                <textarea asp-for="MoTa" class="form-control" rows="5" placeholder="Mô tả ngắn về khoa..."></textarea>
+                <span asp-validation-for="MoTa" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions">
+                <a class="btn btn-light" asp-area="Admin" asp-controller="Khoa" asp-action="Index">Hủy</a>
+                <button class="btn btn-primary px-4" type="submit">@(isNewKhoa ? "Thêm khoa" : "Lưu thay đổi")</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="../QuanLySinhVien.Business/QuanLySinhVien.Business.csproj" />
-    <ProjectReference Include="../QuanLySinhVien.DataAccess/QuanLySinhVien.DataAccess.csproj" />
     <ProjectReference Include="../QuanLySinhVien.Models/QuanLySinhVien.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

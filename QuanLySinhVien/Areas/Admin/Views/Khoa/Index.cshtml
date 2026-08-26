@@ -12,7 +12,7 @@
             <h1>Quản lý khoa</h1>
             <p class="faculty-lead">Sắp xếp và theo dõi thông tin các đơn vị đào tạo trong trường.</p>
         </div>
-        <a class="btn btn-light btn-add" href="#">
+        <a class="btn btn-light btn-add" asp-action="Upsert">
             <span aria-hidden="true">+</span> Thêm khoa mới
         </a>
     </div>
@@ -50,7 +50,7 @@
                 <div>◫</div>
                 <h3>Chưa có khoa nào</h3>
                 <p>Hãy thêm khoa đầu tiên để bắt đầu quản lý dữ liệu.</p>
-                <a class="btn btn-primary" href="#">Thêm khoa mới</a>
+                <a class="btn btn-primary" asp-action="Upsert">Thêm khoa mới</a>
             </div>
         }
         else
@@ -75,7 +75,7 @@
                             <td class="faculty-description">@khoa.MoTa</td>
                             <td><span class="status-badge">● Hoạt động</span></td>
                             <td class="text-end">
-                                <button class="btn btn-sm btn-action" type="button">Sửa</button>
+                                <a class="btn btn-sm btn-action" asp-action="Upsert" asp-route-id="@khoa.MaKhoa">Sửa</a>
                                 <button class="btn btn-sm btn-action text-danger" type="button">Xóa</button>
                             </td>
                         </tr>
