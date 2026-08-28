@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Utility/QuanLySinhVien.Utility.csproj",
+      "projectUniqueName": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLySinhVien.Utility.csproj",
       "projectName": "QuanLySinhVien.Utility",
-      "projectPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Utility/QuanLySinhVien.Utility.csproj",
+      "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLySinhVien.Utility.csproj",
       "packagesPath": "/home/roonau/.nuget/packages/",
-      "outputPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Utility/obj/",
+      "outputPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/roonau/.nuget/NuGet/NuGet.Config"

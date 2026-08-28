@@ -693,46 +693,6 @@
         "build": {
           "buildTransitive/net8.0/_._": {}
         }
-      },
-      "QuanLySinhVien.Business/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.11",
-          "QuanLySinhVien.DataAccess": "1.0.0",
-          "QuanLySinhVien.Models": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/QuanLySinhVien.Business.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/QuanLySinhVien.Business.dll": {}
-        }
-      },
-      "QuanLySinhVien.DataAccess/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.11",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0",
-          "QuanLySinhVien.Models": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/QuanLySinhVien.DataAccess.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/QuanLySinhVien.DataAccess.dll": {}
-        }
-      },
-      "QuanLySinhVien.Models/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "compile": {
-          "bin/placeholder/QuanLySinhVien.Models.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/QuanLySinhVien.Models.dll": {}
-        }
       }
     }
   },
@@ -2285,21 +2245,6 @@
         "system.composition.typedparts.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "QuanLySinhVien.Business/1.0.0": {
-      "type": "project",
-      "path": "../QuanLySinhVien.Business/QuanLySinhVien.Business.csproj",
-      "msbuildProject": "../QuanLySinhVien.Business/QuanLySinhVien.Business.csproj"
-    },
-    "QuanLySinhVien.DataAccess/1.0.0": {
-      "type": "project",
-      "path": "../QuanLySinhVien.DataAccess/QuanLySinhVien.DataAccess.csproj",
-      "msbuildProject": "../QuanLySinhVien.DataAccess/QuanLySinhVien.DataAccess.csproj"
-    },
-    "QuanLySinhVien.Models/1.0.0": {
-      "type": "project",
-      "path": "../QuanLySinhVien.Models/QuanLySinhVien.Models.csproj",
-      "msbuildProject": "../QuanLySinhVien.Models/QuanLySinhVien.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2307,9 +2252,7 @@
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 10.0.11",
       "Microsoft.EntityFrameworkCore >= 10.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 10.0.11",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 10.0.0",
-      "QuanLySinhVien.Business >= 1.0.0",
-      "QuanLySinhVien.Models >= 1.0.0"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 10.0.0"
     ]
   },
   "packageFolders": {
@@ -2318,11 +2261,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien/QuanLySinhVien.csproj",
+      "projectUniqueName": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/QuanLySinhVien.csproj",
       "projectName": "QuanLySinhVien",
-      "projectPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien/QuanLySinhVien.csproj",
+      "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/QuanLySinhVien.csproj",
       "packagesPath": "/home/roonau/.nuget/packages/",
-      "outputPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien/obj/",
+      "outputPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/roonau/.nuget/NuGet/NuGet.Config"
@@ -2337,14 +2280,7 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {
-            "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Business/QuanLySinhVien.Business.csproj": {
-              "projectPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Business/QuanLySinhVien.Business.csproj"
-            },
-            "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj": {
-              "projectPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

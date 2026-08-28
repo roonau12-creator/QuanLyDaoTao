@@ -1823,11 +1823,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj",
+      "projectUniqueName": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLySinhVien.Models.csproj",
       "projectName": "QuanLySinhVien.Models",
-      "projectPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj",
+      "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLySinhVien.Models.csproj",
       "packagesPath": "/home/roonau/.nuget/packages/",
-      "outputPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/obj/",
+      "outputPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/roonau/.nuget/NuGet/NuGet.Config"

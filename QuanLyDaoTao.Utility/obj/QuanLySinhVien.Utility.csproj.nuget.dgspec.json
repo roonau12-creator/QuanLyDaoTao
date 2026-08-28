@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj": {}
+    "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLySinhVien.Utility.csproj": {}
   },
   "projects": {
-    "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj": {
+    "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLySinhVien.Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj",
-        "projectName": "QuanLySinhVien.Models",
-        "projectPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/QuanLySinhVien.Models.csproj",
+        "projectUniqueName": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLySinhVien.Utility.csproj",
+        "projectName": "QuanLySinhVien.Utility",
+        "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLySinhVien.Utility.csproj",
         "packagesPath": "/home/roonau/.nuget/packages/",
-        "outputPath": "/home/roonau/Documents/QuanLySinhVien/QuanLySinhVien.Models/obj/",
+        "outputPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/roonau/.nuget/NuGet/NuGet.Config"
@@ -44,12 +44,6 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Mvc.ViewFeatures": {
-              "target": "Package",
-              "version": "[2.3.12, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
