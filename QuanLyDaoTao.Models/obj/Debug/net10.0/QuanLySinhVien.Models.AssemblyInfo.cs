@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuanLySinhVien.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1efadcd0b5998fc0366f741493f646a82f2bde35")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9081916b308991e567f837ea1a0629bc90b91df")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuanLySinhVien.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuanLySinhVien.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
