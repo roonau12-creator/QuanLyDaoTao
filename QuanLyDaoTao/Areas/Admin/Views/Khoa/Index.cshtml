@@ -1,0 +1,376 @@
+@model IEnumerable<QuanLySinhVien.Models.Khoa>
+
+@{
+    ViewData["Title"] = "Quản lý khoa";
+    var khoaList = Model.ToList();
+}
+
+<section class="faculty-page">
+    <div class="faculty-hero">
+        <div>
+            <p class="eyebrow">HỆ THỐNG QUẢN LÝ SINH VIÊN</p>
+            <h1>Quản lý khoa</h1>
+            <p class="faculty-lead">Sắp xếp và theo dõi thông tin các đơn vị đào tạo trong trường.</p>
+        </div>
+        <a class="btn btn-light btn-add" asp-action="Upsert">
+            <span aria-hidden="true">+</span> Thêm khoa mới
+        </a>
+    </div>
+
+    <div class="faculty-stats">
+        <article class="stat-card">
+            <span class="stat-icon icon-indigo">▦</span>
+            <div><span>Tổng số khoa</span><strong>@khoaList.Count</strong></div>
+        </article>
+        <article class="stat-card">
+            <span class="stat-icon icon-green">✓</span>
+            <div><span>Đang hoạt động</span><strong>@khoaList.Count</strong></div>
+        </article>
+        <article class="stat-card">
+            <span class="stat-icon icon-orange">⌁</span>
+            <div><span>Cập nhật gần đây</span><strong>Hôm nay</strong></div>
+        </article>
+    </div>
+
+    <div class="faculty-panel">
+        <div class="panel-toolbar">
+            <div>
+                <h2>Danh sách khoa</h2>
+                <p>@khoaList.Count khoa trong hệ thống</p>
+            </div>
+            <label class="search-box">
+                <span aria-hidden="true">⌕</span>
+                <input id="facultySearch" type="search" placeholder="Tìm theo tên khoa..." aria-label="Tìm khoa" />
+            </label>
+        </div>
+
+        @if (khoaList.Count == 0)
+        {
+            <div class="empty-state">
+                <div>◫</div>
+                <h3>Chưa có khoa nào</h3>
+                <p>Hãy thêm khoa đầu tiên để bắt đầu quản lý dữ liệu.</p>
+                <a class="btn btn-primary" asp-action="Upsert">Thêm khoa mới</a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table faculty-table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>MÃ KHOA</th>
+                            <th>TÊN KHOA</th>
+                            <th>MÔ TẢ</th>
+                            <th>TRẠNG THÁI</th>
+                            <th class="text-end">THAO TÁC</th>
+                        </tr>
+                    </thead>
+                    <tbody id="facultyRows">
+                    @foreach (var khoa in khoaList)
+                    {
+                        <tr>
+                            <td><span class="faculty-code">@khoa.MaKhoa.ToString("D2")</span></td>
+                            <td><div class="faculty-name"><span>@khoa.TenKhoa[..1].ToUpper()</span>@khoa.TenKhoa</div></td>
+                            <td class="faculty-description">@khoa.MoTa</td>
+                            <td><span class="status-badge">● Hoạt động</span></td>
+                            <td class="text-end">
+                                <a class="btn btn-sm btn-action" asp-action="Upsert" asp-route-id="@khoa.MaKhoa">Sửa</a>
+                                <button class="btn btn-sm btn-action text-danger btn-delete" type="button" data-id="@khoa.MaKhoa" data-name="@khoa.TenKhoa">Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <p id="noSearchResult" class="search-empty d-none">Không tìm thấy khoa phù hợp.</p>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.getElementById('facultySearch')?.addEventListener('input', function () {
+            const keyword = this.value.trim().toLocaleLowerCase();
+            const rows = [...document.querySelectorAll('#facultyRows tr')];
+            let visible = 0;
+            rows.forEach(row => {
+                const matches = row.innerText.toLocaleLowerCase().includes(keyword);
+                row.classList.toggle('d-none', !matches);
+                if (matches) visible++;
+            });
+            document.getElementById('noSearchResult')?.classList.toggle('d-none', visible !== 0);
+        });
+
+        // Delete modal handling
+        const deleteModal = document.getElementById('deleteModal');
+        const deleteForm = document.getElementById('deleteForm');
+        const deleteKhoaName = document.getElementById('deleteKhoaName');
+        let deleteId = null;
+
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function () {
+                deleteId = this.dataset.id;
+                deleteKhoaName.textContent = this.dataset.name;
+                deleteModal.classList.add('show');
+            });
+        });
+
+        document.getElementById('cancelDelete')?.addEventListener('click', function () {
+            deleteModal.classList.remove('show');
+            deleteId = null;
+        });
+
+        document.getElementById('closeModal')?.addEventListener('click', function () {
+            deleteModal.classList.remove('show');
+            deleteId = null;
+        });
+
+        deleteModal?.addEventListener('click', function (e) {
+            if (e.target === deleteModal) {
+                deleteModal.classList.remove('show');
+                deleteId = null;
+            }
+        });
+
+        deleteForm?.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            if (!deleteId) return;
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner"></span> Đang xóa...';
+            btn.disabled = true;
+
+            try {
+                const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                const response = await fetch(`/Admin/Khoa/Delete/${deleteId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    }
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(result.message, 'success');
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    showToast(result.message, 'error');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                showToast('Đã xảy ra lỗi khi xóa khoa.', 'error');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            toast.className = `toast-notification toast-${type}`;
+            toast.innerHTML = `
+                <span class="toast-icon">${type === 'success' ? '✓' : '✕'}</span>
+                <span class="toast-message">${message}</span>
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+}
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-icon warning">
+                <span>⚠</span>
+            </div>
+            <h3>Xác nhận xóa khoa</h3>
+        </div>
+        <div class="modal-body">
+            <p>Bạn có chắc chắn muốn xóa khoa <strong id="deleteKhoaName"></strong>?</p>
+            <p class="modal-warning">Hành động này không thể hoàn tác và sẽ xóa tất cả dữ liệu liên quan.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="cancelDelete" class="btn btn-light">Hủy bỏ</button>
+            <form id="deleteForm" method="post">
+                <button type="submit" class="btn btn-danger">Xóa vĩnh viễn</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal-content {
+        background: white;
+        border-radius: 16px;
+        width: 90%;
+        max-width: 440px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        transform: scale(0.95) translateY(-10px);
+        transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.show .modal-content {
+        transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+        padding: 24px 24px 0;
+        text-align: center;
+    }
+
+    .modal-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 28px;
+    }
+
+    .modal-icon.warning {
+        background: #fef2f2;
+        color: #dc2626;
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    .modal-body {
+        padding: 16px 24px;
+        text-align: center;
+    }
+
+    .modal-body p {
+        margin: 0 0 8px;
+        color: #4b5563;
+        line-height: 1.6;
+    }
+
+    .modal-warning {
+        font-size: 0.875rem;
+        color: #9ca3af !important;
+        margin-top: 12px !important;
+    }
+
+    .modal-footer {
+        padding: 0 24px 24px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .modal-footer .btn {
+        min-width: 120px;
+        padding: 10px 20px;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-danger {
+        background: #dc2626;
+        color: white;
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background: #b91c1c;
+    }
+
+    .btn-light {
+        background: #f3f4f6;
+        color: #4b5563;
+        border: 1px solid #e5e7eb;
+    }
+
+    .btn-light:hover {
+        background: #e5e7eb;
+    }
+
+    .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    @@keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .toast-notification {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        padding: 16px 24px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1100;
+    }
+
+    .toast-notification.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .toast-success {
+        background: #059669;
+        color: white;
+    }
+
+    .toast-error {
+        background: #dc2626;
+        color: white;
+    }
+
+    .toast-icon {
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
