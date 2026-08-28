@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace QuanLySinhVien.Models;
+namespace QuanLyDaoTao.Models;
 
 public class Khoa
 {

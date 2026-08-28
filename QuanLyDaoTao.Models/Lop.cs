@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Threading.Tasks;
 
-namespace QuanLySinhVien.Models
+namespace QuanLyDaoTao.Models
 {
     public class Lop
     {
