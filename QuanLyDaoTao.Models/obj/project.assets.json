@@ -1823,9 +1823,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLySinhVien.Models.csproj",
-      "projectName": "QuanLySinhVien.Models",
-      "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLySinhVien.Models.csproj",
+      "projectUniqueName": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLyDaoTao.Models.csproj",
+      "projectName": "QuanLyDaoTao.Models",
+      "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLyDaoTao.Models.csproj",
       "packagesPath": "/home/roonau/.nuget/packages/",
       "outputPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/",
       "projectStyle": "PackageReference",

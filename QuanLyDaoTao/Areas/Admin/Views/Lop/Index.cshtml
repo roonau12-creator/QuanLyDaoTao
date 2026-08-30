@@ -1,0 +1,233 @@
+@model IEnumerable<QuanLyDaoTao.Models.Lop>
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+
+@{
+    var lopList = Model?.ToList() ?? new List<QuanLyDaoTao.Models.Lop>();
+    var xsrfToken = Antiforgery.GetTokens(Context).RequestToken;
+
+    var totalClasses = lopList.Count;
+    var totalKhoa = lopList
+        .Where(l => l.Khoa != null)
+        .Select(l => l.Khoa.MaKhoa)
+        .Distinct()
+        .Count();
+}
+
+<style>
+    .faculty-table thead th {
+        font-size: .75rem;
+        letter-spacing: .08em;
+        color: #6c757d;
+        white-space: nowrap;
+    }
+
+    .faculty-table tbody td {
+        vertical-align: middle;
+    }
+
+    .faculty-table tbody tr:hover {
+        background-color: rgba(13, 110, 253, .04);
+    }
+
+    .action-cell {
+        min-width: 170px;
+    }
+
+    .search-empty {
+        text-align: center;
+        color: #6c757d;
+        padding: 1rem 0;
+    }
+
+    .search-box input {
+        min-width: 260px;
+    }
+</style>
+
+<section class="faculty-page">
+
+    <!-- Hero -->
+    <div class="faculty-hero">
+        <div>
+            <p class="eyebrow">
+                <i class="bi bi-mortarboard-fill me-1"></i>
+                HỆ THỐNG QUẢN LÝ SINH VIÊN
+            </p>
+
+            <h1>Quản lý lớp</h1>
+
+            <p class="faculty-lead">
+                Sắp xếp, theo dõi và cập nhật thông tin các lớp học trong trường.
+            </p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+            <a asp-action="Index"
+               class="btn btn-outline-light">
+                <i class="bi bi-arrow-clockwise me-1"></i>
+                Làm mới
+            </a>
+
+            <a asp-action="Upsert"
+               class="btn btn-light btn-add">
+                <i class="bi bi-plus-lg me-1"></i>
+                Thêm lớp mới
+            </a>
+        </div>
+    </div>
+
+
+    <!-- Stats -->
+    <div class="faculty-stats">
+
+        <article class="stat-card">
+            <span class="stat-icon icon-indigo">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+            </span>
+
+            <div>
+                <span>Tổng số lớp</span>
+                <strong>@totalClasses</strong>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <span class="stat-icon icon-green">
+                <i class="bi bi-buildings-fill"></i>
+            </span>
+
+            <div>
+                <span>Số khoa có lớp</span>
+                <strong>@totalKhoa</strong>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <span class="stat-icon icon-orange">
+                <i class="bi bi-clock-history"></i>
+            </span>
+
+            <div>
+                <span>Cập nhật gần đây</span>
+                <strong>Hôm nay</strong>
+            </div>
+        </article>
+
+    </div>
+
+
+    <!-- Panel danh sách -->
+    <div class="faculty-panel">
+
+        <div class="panel-toolbar">
+            <div>
+                <h2>
+                    <i class="bi bi-list-ul me-2"></i>
+                    Danh sách lớp
+                </h2>
+
+                <p>
+                    @totalClasses lớp trong hệ thống
+                </p>
+            </div>
+
+            <label class="search-box">
+                <span aria-hidden="true">
+                    <i class="bi bi-search"></i>
+                </span>
+
+                <input id="classSearch"
+                       type="search"
+                       class="form-control"
+                       placeholder="Tìm theo tên lớp / khoa..."
+                       aria-label="Tìm lớp" />
+            </label>
+        </div>
+
+
+        <div class="table-responsive">
+            <table id="tblClass"
+                   class="table faculty-table align-middle mb-0 w-100"
+                   data-xsrf="@xsrfToken"
+                   data-delete-url="@Url.Action("Delete", "Lop")">
+
+                <thead>
+                    <tr>
+                        <th style="width: 120px;">MÃ LỚP</th>
+                        <th>TÊN LỚP</th>
+                        <th>KHOA</th>
+                        <th class="text-end action-cell">THAO TÁC</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var lop in lopList)
+                    {
+                        <tr>
+                            <td>
+                                <span class="badge bg-light text-secondary border fw-semibold">
+                                    #@lop.MaLop
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="fw-semibold">
+                                    @lop.TenLop
+                                </div>
+                            </td>
+
+                            <td>
+                                @if (lop.Khoa != null)
+                                {
+                                    <span class="badge rounded-pill bg-light text-primary border">
+                                        <i class="bi bi-building me-1"></i>
+                                        @lop.Khoa.TenKhoa
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">—</span>
+                                }
+                            </td>
+
+                            <td class="text-end">
+                                <div class="d-inline-flex gap-2 justify-content-end">
+
+                                    <a asp-action="Upsert"
+                                       asp-route-id="@lop.MaLop"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Sửa lớp @lop.TenLop">
+                                        <i class="bi bi-pencil-square me-1"></i>
+                                        Sửa
+                                    </a>
+
+                                    <button type="button"
+                                            class="btn btn-sm btn-outline-danger btn-delete-class"
+                                            data-id="@lop.MaLop"
+                                            data-name="@lop.TenLop"
+                                            title="Xóa lớp @lop.TenLop">
+                                        <i class="bi bi-trash me-1"></i>
+                                        Xóa
+                                    </button>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+        <p id="noSearchResultClass" class="search-empty d-none">
+            <i class="bi bi-search me-1"></i>
+            Không tìm thấy lớp phù hợp.
+        </p>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <script src="~/js/lop.js"></script>
+}

@@ -1,0 +1,43 @@
+
+    .page-title {
+        font-size: 1.6rem;
+    }
+
+    .lop-card {
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+
+    .lop-header {
+        background: linear-gradient(135deg, #0d6efd 0%, #20c997 100%);
+    }
+
+    .lop-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .input-group-text {
+        width: 44px;
+        justify-content: center;
+    }
+
+    .btn-action {
+        min-width: 125px;
+    }
+
+    .input-validation-invalid,
+    .select-validation-invalid {
+        border-color: #dc3545;
+    }
+

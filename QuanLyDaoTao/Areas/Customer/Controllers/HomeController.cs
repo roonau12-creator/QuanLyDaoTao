@@ -1,10 +1,10 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuanLySinhVien.DataAccess.Data;
+using QuanLyDaoTao.DataAccess.Data;
 using QuanLySinhVien.Models;
 
-namespace QuanLySinhVien.Areas.Customer;
+namespace QuanLyDaoTao.Areas.Customer;
 [Area("Customer")]
 public class HomeController : Controller
 {

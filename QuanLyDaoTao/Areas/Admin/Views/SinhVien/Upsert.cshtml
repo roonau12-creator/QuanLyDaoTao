@@ -1,0 +1,79 @@
+@using QuanLyDaoTao.Models.ViewModels
+@model SinhVienVM
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center align-items-center" style="height:100vh;">
+        <div class="card shadow rounded border-0">
+            <div class="card-header bg-primary">
+                <h5 class="text-white mb-0">@(Model.SinhVien.MaSinhVien==0?"Thêm":"Cập nhật") sinh viên</h5>
+            </div>
+            <div class="card-body p-4">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.MaSoSinhVien" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.MaSoSinhVien" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.MaSoSinhVien" class="text-danger"></span>
+                    </div>
+                     <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.Hoten" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.Hoten" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.Hoten" class="text-danger"></span>
+                    </div>
+                     <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.NgaySinh" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.NgaySinh" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.NgaySinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.GioiTinh" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.GioiTinh" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.GioiTinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.CanCuocCongDan" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.CanCuocCongDan" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.CanCuocCongDan" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.Email" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.Email" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.SoDienThoai" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.SoDienThoai" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.SoDienThoai" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="SinhVien.NgayNhapHoc" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.NgayNhapHoc" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.NgayNhapHoc" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input name="file" type="file" accept="image/*" class="form-control shadow border-0"/>
+                        <label asp-for="SinhVien.AnhDaiDien" class="ms-2"></label>
+                        <span asp-validation-for="SinhVien.AnhDaiDien" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="SinhVien.MaLop" asp-items="Model.LopList" class="form-select">
+                            <option disabled onselect="">--Chọn lớp--</option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="SinhVien.Lop.MaKhoa" asp-items="Model.KhoaList" class="form-select">
+                            <option disabled onselect="">--Chọn khoa--</option>
+                        </select>
+                    </div>
+                    @if(Model.SinhVien.MaSinhVien==0)
+                        {
+                             <button type="submit" class="btn btn-success">Thêm</button>
+                        }
+                    else
+                        {
+                             <button type="submit" class="btn btn-success">Cập nhật</button>
+                        }
+
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>

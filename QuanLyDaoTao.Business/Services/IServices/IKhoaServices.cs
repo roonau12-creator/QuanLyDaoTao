@@ -1,6 +1,6 @@
-﻿using QuanLySinhVien.DataAccess.Data;
-using QuanLySinhVien.Models;
-namespace QuanLySinhVien.Business;
+using QuanLyDaoTao.DataAccess.Data;
+using QuanLyDaoTao.Models;
+namespace QuanLyDaoTao.Business;
 
 public interface IKhoaService
 {
@@ -9,5 +9,6 @@ public interface IKhoaService
     Task CreateKhoaAsync(Khoa khoa);
     Task UpdateKhoaAsync(Khoa khoa);
     Task DeleteKhoaAsync(int id);
+    Task<(int LopCount, int MonHocCount)> GetRelatedCountsAsync(int khoaId);
 
 }

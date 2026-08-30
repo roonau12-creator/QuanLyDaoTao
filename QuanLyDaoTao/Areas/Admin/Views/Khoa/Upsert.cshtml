@@ -1,47 +1,227 @@
-@model QuanLySinhVien.Models.Khoa
+@model QuanLyDaoTao.Models.Khoa
 
 @{
-    var isNewKhoa = Model.MaKhoa == 0;
-    ViewData["Title"] = isNewKhoa ? "Thêm khoa mới" : "Cập nhật khoa";
+    ViewData["Title"] = Model.MaKhoa == 0 ? "Tạo khoa mới" : "Cập nhật khoa";
+    var isEdit = Model.MaKhoa != 0;
 }
 
-<section class="faculty-form-page">
-    <a class="back-link" asp-area="Admin" asp-controller="Khoa" asp-action="Index">← Quay lại danh sách khoa</a>
+<style>
+    .page-title {
+        font-size: 1.6rem;
+    }
 
-    <div class="faculty-form-card">
-        <div class="form-heading">
-            <span class="form-heading-icon">@(isNewKhoa ? "+" : "✎")</span>
-            <div>
-                <p class="eyebrow">QUẢN LÝ KHOA</p>
-                <h1>@ViewData["Title"]</h1>
-                <p>@(isNewKhoa ? "Điền thông tin để thêm một khoa vào hệ thống." : "Chỉnh sửa thông tin của khoa đã chọn.")</p>
+    .khoa-card {
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+
+    .khoa-header {
+        background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+    }
+
+    .khoa-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .input-group-text {
+        width: 44px;
+        justify-content: center;
+    }
+
+    .btn-action {
+        min-width: 125px;
+    }
+
+    .input-validation-invalid {
+        border-color: #dc3545;
+    }
+</style>
+
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9 col-xxl-7">
+
+            <!-- Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+                <div>
+                    <h2 class="page-title fw-bold mb-1">
+                        <i class="bi bi-building-add me-2 text-primary"></i>
+                        @(isEdit ? "Cập nhật khoa" : "Tạo khoa mới")
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        @(isEdit
+                            ? "Cập nhật thông tin khoa và lưu lại thay đổi."
+                            : "Nhập thông tin để tạo khoa mới trong hệ thống.")
+                    </p>
+                </div>
+
+                <a asp-controller="Khoa"
+                   asp-action="Index"
+                   class="btn btn-light border shadow-sm">
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Quay lại
+                </a>
             </div>
+
+
+            <!-- Card form -->
+            <div class="card border-0 shadow khoa-card">
+
+                <!-- Card header -->
+                <div class="card-header khoa-header text-white py-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="khoa-icon">
+                            <i class="bi bi-mortarboard-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5 class="mb-1 fw-semibold">Thông tin khoa</h5>
+
+                            <div class="small text-white-50">
+                                @(isEdit
+                                    ? $"Mã khoa hiện tại: {Model.MaKhoa}"
+                                    : "Thông tin dưới đây sẽ được dùng để quản lý khoa.")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Form -->
+                <form asp-controller="Khoa"
+                      asp-action="Upsert"
+                      method="post"
+                      asp-antiforgery="true"
+                      novalidate>
+
+                    <input asp-for="MaKhoa" type="hidden" />
+
+                    <div class="card-body p-4">
+
+                        <!-- Validation tổng -->
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger small mb-3">
+                        </div>
+
+
+                        <!-- Mã khoa - chỉ hiển thị khi sửa -->
+                        @if (isEdit)
+                        {
+                            <div class="mb-4">
+                                <label class="form-label">Mã khoa</label>
+
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted">
+                                        <i class="bi bi-hash"></i>
+                                    </span>
+
+                                    <input type="text"
+                                           class="form-control bg-light text-muted"
+                                           value="@Model.MaKhoa"
+                                           readonly
+                                           disabled />
+                                </div>
+
+                                <div class="form-text">
+                                    Mã khoa được giữ nguyên khi cập nhật.
+                                </div>
+                            </div>
+                        }
+
+
+                        <!-- Tên khoa -->
+                        <div class="mb-4">
+                            <label asp-for="TenKhoa"
+                                   class="form-label">
+                                Tên khoa
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted">
+                                    <i class="bi bi-building"></i>
+                                </span>
+
+                                <input asp-for="TenKhoa"
+                                       class="form-control form-control-lg"
+                                       placeholder="Nhập tên khoa"
+                                       autocomplete="off"
+                                       aria-required="true" />
+                            </div>
+
+                            <span asp-validation-for="TenKhoa"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+
+                        <!-- Mô tả -->
+                        <div class="mb-2">
+                            <label asp-for="MoTa"
+                                   class="form-label">
+                                Mô tả
+                            </label>
+
+                            <div class="input-group align-items-start">
+                                <span class="input-group-text bg-light text-muted">
+                                    <i class="bi bi-card-text"></i>
+                                </span>
+
+                                <textarea asp-for="MoTa"
+                                          class="form-control"
+                                          rows="6"
+                                          placeholder="Nhập mô tả về khoa..."></textarea>
+                            </div>
+
+                            <span asp-validation-for="MoTa"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Card footer / Buttons -->
+                    <div class="card-footer bg-light border-top py-3">
+                        <div class="d-flex flex-column-reverse flex-sm-row justify-content-end gap-2">
+
+                            <a asp-controller="Khoa"
+                               asp-action="Index"
+                               class="btn btn-outline-secondary btn-action">
+                                <i class="bi bi-x-circle me-1"></i>
+                                Hủy
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-action">
+                                <i class="bi bi-check-circle me-1"></i>
+                                @(isEdit ? "Lưu thay đổi" : "Thêm mới")
+                            </button>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
-
-        <form method="post" class="faculty-form" novalidate>
-            <input asp-for="MaKhoa" type="hidden" />
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-            <div class="mb-4">
-                <label asp-for="TenKhoa" class="form-label">Tên khoa <span class="text-danger">*</span></label>
-                <input asp-for="TenKhoa" class="form-control" placeholder="Ví dụ: Công nghệ thông tin" autofocus="@isNewKhoa" />
-                <span asp-validation-for="TenKhoa" class="text-danger"></span>
-            </div>
-
-            <div class="mb-4">
-                <label asp-for="MoTa" class="form-label">Mô tả <span class="text-danger">*</span></label>
-                <textarea asp-for="MoTa" class="form-control" rows="5" placeholder="Mô tả ngắn về khoa..."></textarea>
-                <span asp-validation-for="MoTa" class="text-danger"></span>
-            </div>
-
-            <div class="form-actions">
-                <a class="btn btn-light" asp-area="Admin" asp-controller="Khoa" asp-action="Index">Hủy</a>
-                <button class="btn btn-primary px-4" type="submit">@(isNewKhoa ? "Thêm khoa" : "Lưu thay đổi")</button>
-            </div>
-        </form>
     </div>
-</section>
+</div>
 
-@section Scripts {
+@section Scripts
+{
     <partial name="_ValidationScriptsPartial" />
 }

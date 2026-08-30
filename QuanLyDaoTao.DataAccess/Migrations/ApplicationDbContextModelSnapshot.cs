@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using QuanLySinhVien.DataAccess.Data;
+using QuanLyDaoTao.DataAccess.Data;
 
 #nullable disable
 
-namespace QuanLySinhVien.DataAccess.Migrations
+namespace QuanLyDaoTao.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace QuanLySinhVien.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("QuanLySinhVien.Models.HocKy", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.HocKy", b =>
                 {
                     b.Property<int>("MaHocKy")
                         .ValueGeneratedOnAdd()
@@ -30,8 +30,8 @@ namespace QuanLySinhVien.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("MaHocKy"));
 
-                    b.Property<DateTime>("NamHoc")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("NamHoc")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("NgayBatDau")
                         .HasColumnType("timestamp with time zone");
@@ -48,7 +48,7 @@ namespace QuanLySinhVien.DataAccess.Migrations
                     b.ToTable("hocKys");
                 });
 
-            modelBuilder.Entity("QuanLySinhVien.Models.Khoa", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.Khoa", b =>
                 {
                     b.Property<int>("MaKhoa")
                         .ValueGeneratedOnAdd()
@@ -58,11 +58,13 @@ namespace QuanLySinhVien.DataAccess.Migrations
 
                     b.Property<string>("MoTa")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("TenKhoa")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.HasKey("MaKhoa");
 
@@ -77,7 +79,7 @@ namespace QuanLySinhVien.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("QuanLySinhVien.Models.Lop", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.Lop", b =>
                 {
                     b.Property<int>("MaLop")
                         .ValueGeneratedOnAdd()
@@ -90,7 +92,8 @@ namespace QuanLySinhVien.DataAccess.Migrations
 
                     b.Property<string>("TenLop")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("MaLop");
 
@@ -99,7 +102,7 @@ namespace QuanLySinhVien.DataAccess.Migrations
                     b.ToTable("lops");
                 });
 
-            modelBuilder.Entity("QuanLySinhVien.Models.MonHoc", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.MonHoc", b =>
                 {
                     b.Property<int>("MaMonHoc")
                         .ValueGeneratedOnAdd()
@@ -114,9 +117,8 @@ namespace QuanLySinhVien.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("SoTinChi")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("SoTinChi")
+                        .HasColumnType("integer");
 
                     b.Property<string>("TenMonHoc")
                         .IsRequired()
@@ -129,7 +131,7 @@ namespace QuanLySinhVien.DataAccess.Migrations
                     b.ToTable("monHocs");
                 });
 
-            modelBuilder.Entity("QuanLySinhVien.Models.SinhVien", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.SinhVien", b =>
                 {
                     b.Property<int>("MaSinhVien")
                         .ValueGeneratedOnAdd()
@@ -141,33 +143,39 @@ namespace QuanLySinhVien.DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("CanCuocCongDan")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("DiaChi")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool?>("GioiTinh")
+                    b.Property<bool>("GioiTinh")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Hoten")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("MaLop")
                         .HasColumnType("integer");
 
                     b.Property<string>("MaSoSinhVien")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("NgayNhapHoc")
+                    b.Property<DateTime>("NgayNhapHoc")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("NgaySinh")
+                    b.Property<DateTime>("NgaySinh")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("SoDienThoai")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("MaSinhVien");
@@ -175,33 +183,110 @@ namespace QuanLySinhVien.DataAccess.Migrations
                     b.HasIndex("MaLop");
 
                     b.ToTable("sinhViens");
+
+                    b.HasData(
+                        new
+                        {
+                            MaSinhVien = 1,
+                            AnhDaiDien = "an.jpg",
+                            CanCuocCongDan = "079205001234",
+                            DiaChi = "Đắk Lắk",
+                            Email = "nguyenvanan@gmail.com",
+                            GioiTinh = true,
+                            Hoten = "Nguyễn Văn An",
+                            MaLop = 3,
+                            MaSoSinhVien = "SV001",
+                            NgayNhapHoc = new DateTime(2023, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            NgaySinh = new DateTime(2005, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SoDienThoai = "0901234567"
+                        },
+                        new
+                        {
+                            MaSinhVien = 2,
+                            AnhDaiDien = "binh.jpg",
+                            CanCuocCongDan = "079205002345",
+                            DiaChi = "Gia Lai",
+                            Email = "tranthibinh@gmail.com",
+                            GioiTinh = false,
+                            Hoten = "Trần Thị Bình",
+                            MaLop = 3,
+                            MaSoSinhVien = "SV002",
+                            NgayNhapHoc = new DateTime(2023, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            NgaySinh = new DateTime(2005, 3, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SoDienThoai = "0912345678"
+                        },
+                        new
+                        {
+                            MaSinhVien = 3,
+                            AnhDaiDien = "cuong.jpg",
+                            CanCuocCongDan = "079204003456",
+                            DiaChi = "Kon Tum",
+                            Email = "levancuong@gmail.com",
+                            GioiTinh = true,
+                            Hoten = "Lê Văn Cường",
+                            MaLop = 3,
+                            MaSoSinhVien = "SV003",
+                            NgayNhapHoc = new DateTime(2023, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            NgaySinh = new DateTime(2004, 11, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SoDienThoai = "0923456789"
+                        },
+                        new
+                        {
+                            MaSinhVien = 4,
+                            AnhDaiDien = "dung.jpg",
+                            CanCuocCongDan = "079205004567",
+                            DiaChi = "Đắk Nông",
+                            Email = "phamthidung@gmail.com",
+                            GioiTinh = false,
+                            Hoten = "Phạm Thị Dung",
+                            MaLop = 3,
+                            MaSoSinhVien = "SV004",
+                            NgayNhapHoc = new DateTime(2023, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            NgaySinh = new DateTime(2005, 6, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SoDienThoai = "0934567890"
+                        },
+                        new
+                        {
+                            MaSinhVien = 5,
+                            AnhDaiDien = "em.jpg",
+                            CanCuocCongDan = "079205005678",
+                            DiaChi = "Phú Yên",
+                            Email = "hoangvanem@gmail.com",
+                            GioiTinh = true,
+                            Hoten = "Hoàng Văn Em",
+                            MaLop = 3,
+                            MaSoSinhVien = "SV005",
+                            NgayNhapHoc = new DateTime(2023, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            NgaySinh = new DateTime(2005, 9, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SoDienThoai = "0945678901"
+                        });
                 });
 
-            modelBuilder.Entity("QuanLySinhVien.Models.Lop", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.Lop", b =>
                 {
-                    b.HasOne("QuanLySinhVien.Models.Khoa", "khoa")
+                    b.HasOne("QuanLyDaoTao.Models.Khoa", "Khoa")
                         .WithMany()
                         .HasForeignKey("MaKhoa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("khoa");
+                    b.Navigation("Khoa");
                 });
 
-            modelBuilder.Entity("QuanLySinhVien.Models.MonHoc", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.MonHoc", b =>
                 {
-                    b.HasOne("QuanLySinhVien.Models.Khoa", "khoa")
+                    b.HasOne("QuanLyDaoTao.Models.Khoa", "Khoa")
                         .WithMany()
                         .HasForeignKey("MaKhoa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("khoa");
+                    b.Navigation("Khoa");
                 });
 
-            modelBuilder.Entity("QuanLySinhVien.Models.SinhVien", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.SinhVien", b =>
                 {
-                    b.HasOne("QuanLySinhVien.Models.Lop", "Lop")
+                    b.HasOne("QuanLyDaoTao.Models.Lop", "Lop")
                         .WithMany()
                         .HasForeignKey("MaLop")
                         .OnDelete(DeleteBehavior.Cascade)

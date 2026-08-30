@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using QuanLySinhVien.DataAccess.Data;
+using QuanLyDaoTao.DataAccess.Data;
 
 #nullable disable
 
-namespace QuanLySinhVien.DataAccess.Migrations
+namespace QuanLyDaoTao.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20260826085043_SeedKhoa")]
@@ -24,7 +24,7 @@ namespace QuanLySinhVien.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("QuanLySinhVien.Models.Khoa", b =>
+            modelBuilder.Entity("QuanLyDaoTao.Models.Khoa", b =>
                 {
                     b.Property<int>("MaKhoa")
                         .ValueGeneratedOnAdd()

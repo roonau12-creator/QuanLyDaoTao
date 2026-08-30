@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using QuanLySinhVien.DataAccess.Data;
-using QuanLySinhVien.Models;
+using QuanLyDaoTao.DataAccess.Data;
+using QuanLyDaoTao.Models;
 
-namespace QuanLySinhVien.Business.Services
+namespace QuanLyDaoTao.Business.Services
 {
     public class KhoaService : IKhoaService
     {
@@ -34,10 +34,7 @@ namespace QuanLySinhVien.Business.Services
 
         public async Task<List<Khoa>> GetAllKhoasAsync()
         {
-            return await _context.khoas
-                .AsNoTracking()
-                .OrderBy(khoa => khoa.TenKhoa)
-                .ToListAsync();
+            return await _context.khoas.ToListAsync();
         }
 
         public async Task<Khoa?> GetKhoaByIdAsync(int id)
@@ -50,6 +47,13 @@ namespace QuanLySinhVien.Business.Services
             _context.khoas.Update(khoa);
             await _context.SaveChangesAsync();
         }
-        
+
+        public async Task<(int LopCount, int MonHocCount)> GetRelatedCountsAsync(int khoaId)
+        {
+            var lopCount = await _context.lops.CountAsync(l => l.MaKhoa == khoaId);
+            var monHocCount = await _context.monHocs.CountAsync(m => m.MaKhoa == khoaId);
+            return (lopCount, monHocCount);
+        }
+
     }
 }

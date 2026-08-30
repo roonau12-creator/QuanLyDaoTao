@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace QuanLySinhVien.DataAccess.Migrations
+namespace QuanLyDaoTao.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class SeedKhoa : Migration

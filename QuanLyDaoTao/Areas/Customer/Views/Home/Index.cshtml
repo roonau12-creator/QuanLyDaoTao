@@ -1,9 +1,275 @@
-@{
-    ViewData["Title"] = "Trang chủ";
-}
 
-<div class="text-center py-5">
-    <h1 class="display-4">Hệ thống quản lý sinh viên</h1>
-    <p class="lead text-muted">Quản lý khoa, sinh viên và thông tin đào tạo tập trung.</p>
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Khoa" asp-action="Index">Quản lý khoa</a>
-</div>
+
+  <!-- Header -->
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h1>CỔNG THÔNG TIN QUẢN LÝ ĐÀO TẠO</h1>
+          <p class="sub mt-3">Dành cho sinh viên</p>
+          <p class="desc mt-4">
+            Hệ thống cung cấp các dịch vụ trực tuyến giúp sinh viên tra cứu thông
+            tin học tập, đăng ký học phần, xem kết quả và quản lý quá trình học
+            tập một cách nhanh chóng, thuận tiện.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <button class="btn btn-hero-outline px-4 py-2">Đăng nhập</button>
+            <button class="btn btn-hero-solid px-4 py-2">Đăng ký tài khoản</button>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-art">
+            <img src="https://images.unsplash.com/photo-1523050854058-8389014554de?auto=format&fit=crop&w=1000&q=80" alt="Sinh viên" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick actions -->
+  <section class="quick-actions">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-sm-6 col-lg">
+          <div class="qa-card">
+            <div class="d-flex align-items-start gap-3">
+              <span class="qa-icon"><i class="bi bi-bell-fill"></i></span>
+              <div>
+                <p class="qa-title">Thông báo</p>
+                <p class="qa-desc">Cập nhật các thông báo mới nhất từ phòng đào tạo.</p>
+                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg">
+          <div class="qa-card">
+            <div class="d-flex align-items-start gap-3">
+              <span class="qa-icon"><i class="bi bi-calendar3"></i></span>
+              <div>
+                <p class="qa-title">Thời khóa biểu</p>
+                <p class="qa-desc">Xem thời khóa biểu cá nhân theo tuần.</p>
+                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg">
+          <div class="qa-card">
+            <div class="d-flex align-items-start gap-3">
+              <span class="qa-icon"><i class="bi bi-award"></i></span>
+              <div>
+                <p class="qa-title">Kết quả học tập</p>
+                <p class="qa-desc">Tra cứu kết quả học tập, điểm số từng học phần.</p>
+                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg">
+          <div class="qa-card">
+            <div class="d-flex align-items-start gap-3">
+              <span class="qa-icon"><i class="bi bi-book"></i></span>
+              <div>
+                <p class="qa-title">Chương trình đào tạo</p>
+                <p class="qa-desc">Xem thông tin chương trình đào tạo của khóa học.</p>
+                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg">
+          <div class="qa-card">
+            <div class="d-flex align-items-start gap-3">
+              <span class="qa-icon"><i class="bi bi-credit-card-2-front"></i></span>
+              <div>
+                <p class="qa-title">Học phí</p>
+                <p class="qa-desc">Tra cứu thông tin học phí và lịch sử thanh toán.</p>
+                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main body -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6" id="notifications">
+          <div class="panel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="panel-title">THÔNG BÁO MỚI NHẤT</h2>
+              <span class="badge-new">Mới</span>
+            </div>
+            <a class="notif-item" href="#">
+              <span class="notif-icon"><i class="bi bi-megaphone-fill"></i></span>
+              <div>
+                <p class="notif-title">Thông báo đăng ký học phần học kỳ 2 năm học 2024-2025</p>
+                <p class="notif-date">15/05/2025</p>
+              </div>
+            </a>
+            <a class="notif-item" href__="#">
+              <span class="notif-icon"><i class="bi bi-file-earmark-text-fill"></i></span>
+              <div>
+                <p class="notif-title">Thông báo nộp học phí học kỳ 2 năm học 2024-2025</p>
+                <p class="notif-date">12/05/2025</p>
+              </div>
+            </a>
+            <a class="notif-item" href__="#">
+              <span class="notif-icon"><i class="bi bi-calendar-event-fill"></i></span>
+              <div>
+                <p class="notif-title">Thông báo nghỉ lễ 30/4 và 1/5</p>
+                <p class="notif-date">25/04/2025</p>
+              </div>
+            </a>
+            <a class="more-link" href__="#">Xem tất cả thông báo <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-6" id="guides">
+          <div class="panel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="panel-title">HƯỚNG DẪN SỬ DỤNG</h2>
+            </div>
+
+            <div class="faq-item open">
+              <button class="faq-btn" type="button" onclick="toggleFaq(this)">
+                <span class="d-flex align-items-center gap-3">
+                  <span class="faq-num">1</span>
+                  Làm thế nào để đăng ký tài khoản sinh viên?
+                </span>
+                <i class="bi bi-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                Sinh viên liên hệ phòng đào tạo để được cấp tài khoản truy cập hệ thống với mã sinh viên làm tên đăng nhập.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" onclick="toggleFaq(this)">
+                <span class="d-flex align-items-center gap-3">
+                  <span class="faq-num">2</span>
+                  Quên mật khẩu phải làm sao?
+                </span>
+                <i class="bi bi-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                Sử dụng chức năng "Quên mật khẩu" tại trang đăng nhập, nhập email đã đăng ký để nhận hướng dẫn đặt lại mật khẩu.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" onclick="toggleFaq(this)">
+                <span class="d-flex align-items-center gap-3">
+                  <span class="faq-num">3</span>
+                  Hướng dẫn đăng ký học phần
+                </span>
+                <i class="bi bi-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                Đăng nhập hệ thống, chọn mục Đăng ký học phần, chọn các học phần theo kế hoạch học tập rồi xác nhận đăng ký trong thời gian quy định.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" onclick="toggleFaq(this)">
+                <span class="d-flex align-items-center gap-3">
+                  <span class="faq-num">4</span>
+                  Hướng dẫn xem kết quả học tập
+                </span>
+                <i class="bi bi-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                Vào mục Kết quả học tập để tra cứu điểm từng học phần, điểm trung bình tích lũy và xếp loại học lực theo học kỳ.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-btn" type="button" onclick="toggleFaq(this)">
+                <span class="d-flex align-items-center gap-3">
+                  <span class="faq-num">5</span>
+                  Hướng dẫn nộp học phí trực tuyến
+                </span>
+                <i class="bi bi-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                Vào mục Học phí, chọn kỳ học cần đóng, làm theo hướng dẫn thanh toán trực tuyến qua cổng liên kết với ngân hàng.
+              </div>
+            </div>
+
+            <a class="more-link" href__="#">Xem tất cả hướng dẫn <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="brand mb-3">
+            <span class="brand-badge" style="background:rgba(255,255,255,.1)"><i class="bi bi-mortarboard-fill"></i></span>
+            <span>
+              <span class="brand-title d-block text-white">QL ĐÀO TẠO</span>
+              <span class="brand-sub d-block" style="color:rgba(255,255,255,.6)">Cổng thông tin sinh viên</span>
+            </span>
+          </div>
+          <p style="font-size:.88rem;line-height:1.6;max-width:420px">
+            Hệ thống quản lý đào tạo cung cấp các dịch vụ trực tuyến cho sinh viên,
+            hỗ trợ tra cứu thông tin và thực hiện các thủ tục học tập nhanh chóng.
+          </p>
+        </div>
+        <div class="col-md-8">
+          <div class="row g-4">
+            <div class="col-sm-6 footer-contact">
+              <span class="fc-icon"><i class="bi bi-geo-alt-fill"></i></span>
+              <div>
+                <p class="fc-label">Địa chỉ</p>
+                <p class="fc-value">Số 01, Đường Đại học, TP. Hà Nội</p>
+              </div>
+            </div>
+            <div class="col-sm-6 footer-contact">
+              <span class="fc-icon"><i class="bi bi-telephone-fill"></i></span>
+              <div>
+                <p class="fc-label">Điện thoại</p>
+                <p class="fc-value">024 3868 0000</p>
+              </div>
+            </div>
+            <div class="col-sm-6 footer-contact">
+              <span class="fc-icon"><i class="bi bi-envelope-fill"></i></span>
+              <div>
+                <p class="fc-label">Email</p>
+                <p class="fc-value">daotao@edu.vn</p>
+              </div>
+            </div>
+            <div class="col-sm-6 footer-contact">
+              <span class="fc-icon"><i class="bi bi-clock-fill"></i></span>
+              <div>
+                <p class="fc-label">Giờ làm việc</p>
+                <p class="fc-value">Thứ 2 - Thứ 6: 8:00 - 17:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Cổng thông tin quản lý đào tạo. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn){
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    }
+  </script>

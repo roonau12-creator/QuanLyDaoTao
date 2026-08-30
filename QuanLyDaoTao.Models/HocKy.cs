@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuanLySinhVien.Models
+namespace QuanLyDaoTao.Models
 {
     public class HocKy
     {
         [Key]
         public int MaHocKy { get; set; }
         [Required]
-        public string TenHocKy { get; set; }
-        public DateTime NamHoc { get; set; }
+        public string TenHocKy { get; set; } = string.Empty;
+        public int NamHoc { get; set; }
         public DateTime NgayBatDau { get; set; }
         public DateTime NgayKetThuc { get; set; }
 

@@ -1,0 +1,13 @@
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.csproj.AssemblyReference.cache
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.GeneratedMSBuildEditorConfig.editorconfig
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.AssemblyInfoInputs.cache
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.AssemblyInfo.cs
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.csproj.CoreCompileInputs.cache
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.sourcelink.json
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/bin/Debug/net10.0/QuanLyDaoTao.Models.deps.json
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/bin/Debug/net10.0/QuanLyDaoTao.Models.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/bin/Debug/net10.0/QuanLyDaoTao.Models.pdb
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/refint/QuanLyDaoTao.Models.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/QuanLyDaoTao.Models.pdb
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/obj/Debug/net10.0/ref/QuanLyDaoTao.Models.dll

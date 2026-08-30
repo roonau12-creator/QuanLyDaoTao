@@ -1,0 +1,194 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model QuanLyDaoTao.Models.ViewModels.LopVM
+
+@{
+    ViewData["Title"] = Model.Lop.MaLop == 0 ? "Tạo lớp mới" : "Cập nhật lớp";
+    var isEdit = Model.Lop.MaLop != 0;
+    var khoaItems = Model.KhoaList ?? new List<SelectListItem>();
+}
+
+<link rel="stylesheet" href="~/css/lop.css" />
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9 col-xxl-7">
+
+            <!-- Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+                <div>
+                    <h2 class="page-title fw-bold mb-1">
+                        <i class="bi bi-journal-plus me-2 text-primary"></i>
+                        @(isEdit ? "Cập nhật lớp" : "Tạo lớp mới")
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        @(isEdit
+                            ? "Cập nhật thông tin lớp và lưu lại thay đổi."
+                            : "Nhập thông tin để tạo lớp mới trong hệ thống.")
+                    </p>
+                </div>
+
+                <a asp-controller="Lop"
+                   asp-action="Index"
+                   class="btn btn-light border shadow-sm">
+                    <i class="bi bi-arrow-left me-1"></i>
+                    Quay lại
+                </a>
+            </div>
+
+
+            <!-- Card form -->
+            <div class="card border-0 shadow lop-card">
+
+                <!-- Card header -->
+                <div class="card-header lop-header text-white py-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="lop-icon">
+                            <i class="bi bi-mortarboard-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5 class="mb-1 fw-semibold">Thông tin lớp</h5>
+
+                            <div class="small text-white-50">
+                                @(isEdit
+                                    ? $"Mã lớp hiện tại: {Model.Lop.MaLop}"
+                                    : "Thông tin dưới đây sẽ được dùng để quản lý lớp.")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Form -->
+                <form asp-controller="Lop"
+                      asp-action="Upsert"
+                      method="post"
+                      asp-antiforgery="true"
+                      novalidate>
+
+                    <input type="hidden" asp-for="Lop.MaLop" />
+
+                    <div class="card-body p-4">
+
+                        <!-- Validation tổng -->
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger small mb-3">
+                        </div>
+
+
+                        <!-- Mã lớp - chỉ hiển thị khi sửa -->
+                        @if (isEdit)
+                        {
+                            <div class="mb-4">
+                                <label class="form-label">Mã lớp</label>
+
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted">
+                                        <i class="bi bi-hash"></i>
+                                    </span>
+
+                                    <input type="text"
+                                           class="form-control bg-light text-muted"
+                                           value="@Model.Lop.MaLop"
+                                           readonly
+                                           disabled />
+                                </div>
+
+                                <div class="form-text">
+                                    Mã lớp được giữ nguyên khi cập nhật.
+                                </div>
+                            </div>
+                        }
+
+
+                        <!-- Tên lớp -->
+                        <div class="mb-4">
+                            <label asp-for="Lop.TenLop"
+                                   class="form-label">
+                                Tên lớp
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted">
+                                    <i class="bi bi-journal-text"></i>
+                                </span>
+
+                                <input asp-for="Lop.TenLop"
+                                       class="form-control form-control-lg"
+                                       placeholder="Nhập tên lớp (ví dụ: DHTH21A)"
+                                       autocomplete="off"
+                                       aria-required="true" />
+                            </div>
+
+                            <span asp-validation-for="Lop.TenLop"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+
+                        <!-- Khoa -->
+                        <div class="mb-2">
+                            <label asp-for="Lop.MaKhoa"
+                                   class="form-label">
+                                Khoa
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted">
+                                    <i class="bi bi-building"></i>
+                                </span>
+
+                                <select asp-for="Lop.MaKhoa"
+                                        class="form-select form-select-lg"
+                                        asp-items="khoaItems"
+                                        aria-required="true">
+                                    <option value="">-- Chọn khoa --</option>
+                                </select>
+                            </div>
+
+                            <span asp-validation-for="Lop.MaKhoa"
+                                  class="text-danger small">
+                            </span>
+
+                            <div class="form-text">
+                                Chọn khoa quản lý lớp này.
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Card footer / Buttons -->
+                    <div class="card-footer bg-light border-top py-3">
+                        <div class="d-flex flex-column-reverse flex-sm-row justify-content-end gap-2">
+
+                            <a asp-controller="Lop"
+                               asp-action="Index"
+                               class="btn btn-outline-secondary btn-action">
+                                <i class="bi bi-x-circle me-1"></i>
+                                Hủy
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-action">
+                                <i class="bi bi-check-circle me-1"></i>
+                                @(isEdit ? "Lưu thay đổi" : "Thêm mới")
+                            </button>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

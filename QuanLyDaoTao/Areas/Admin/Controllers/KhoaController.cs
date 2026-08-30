@@ -1,37 +1,36 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuanLySinhVien.DataAccess.Data;
-using QuanLySinhVien.Models;
+using QuanLyDaoTao.Business;
+using QuanLyDaoTao.DataAccess.Data;
+using QuanLyDaoTao.Models;
 
 namespace QuanLySinhVien.Areas.Admin
 {
     [Area("Admin")]
     public class KhoaController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public KhoaController(ApplicationDbContext context)
+        private readonly IKhoaService _context;
+        public KhoaController(IKhoaService context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var khoas = await _context.khoas
-                .AsNoTracking()
-                .OrderBy(khoa => khoa.TenKhoa)
-                .ToListAsync();
+            var khoas = await _context.GetAllKhoasAsync();
             return View(khoas);
         }
 
         public async Task<IActionResult> Upsert(int? id)
         {
-            if (id is null)
+            if (id == null || id == 0)
             {
                 return View(new Khoa());
             }
 
-            var khoa = await _context.khoas.FindAsync(id);
-            if (khoa is null)
+            var khoa = await _context.GetKhoaByIdAsync(id.Value);
+
+            if (khoa == null)
             {
                 return NotFound();
             }
@@ -43,37 +42,27 @@ namespace QuanLySinhVien.Areas.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upsert(Khoa khoa)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(khoa);
-            }
-
-            var isNewKhoa = khoa.MaKhoa == 0;
-            if (isNewKhoa)
-            {
-                _context.khoas.Add(khoa);
-                TempData["Success"] = "Đã thêm khoa mới.";
-            }
-            else
-            {
-                var existingKhoa = await _context.khoas.FindAsync(khoa.MaKhoa);
-                if (existingKhoa is null)
+                if (khoa.MaKhoa == 0)
                 {
-                    return NotFound();
+                    await _context.CreateKhoaAsync(khoa);
+                }
+                else
+                {
+                    await _context.UpdateKhoaAsync(khoa);
                 }
 
-                existingKhoa.TenKhoa = khoa.TenKhoa;
-                existingKhoa.MoTa = khoa.MoTa;
-                TempData["Success"] = "Đã cập nhật thông tin khoa.";
+                return RedirectToAction("Index");
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View(khoa);
         }
+
         #region CALL API
         public async Task<IActionResult> GetAll()
         {
-            var khoas = await _context.khoas.AsNoTracking().ToListAsync();
+            var khoas = await _context.GetAllKhoasAsync();
             return Json(new { data = khoas });
         }
         #endregion
@@ -82,16 +71,55 @@ namespace QuanLySinhVien.Areas.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var khoa = await _context.khoas.FindAsync(id);
-            if (khoa is null)
+            if (id <= 0)
+            {
+                return Json(new { success = false, message = "Mã khoa không hợp lệ." });
+            }
+
+            var khoa = await _context.GetKhoaByIdAsync(id);
+            if (khoa == null)
             {
                 return Json(new { success = false, message = "Không tìm thấy khoa cần xóa." });
             }
 
-            _context.khoas.Remove(khoa);
-            await _context.SaveChangesAsync();
-            return Json(new { success = true, message = "Đã xóa khoa thành công." });
-        }
+            var (lopCount, monHocCount) = await _context.GetRelatedCountsAsync(id);
+            if (lopCount > 0 || monHocCount > 0)
+            {
+                var parts = new List<string>();
+                if (lopCount > 0) parts.Add($"{lopCount} lớp");
+                if (monHocCount > 0) parts.Add($"{monHocCount} môn học");
+                return Json(new
+                {
+                    success = false,
+                    message = $"Không thể xóa khoa \"{khoa.TenKhoa}\" vì còn {string.Join(" và ", parts)} đang tham chiếu đến khoa này. Vui lòng xóa các bản ghi liên quan trước."
+                });
+            }
 
+            try
+            {
+                await _context.DeleteKhoaAsync(id);
+                return Json(new { success = true, message = $"Đã xóa khoa \"{khoa.TenKhoa}\" thành công." });
+            }
+            catch (DbUpdateException dbEx)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = $"Không thể xóa khoa do lỗi cơ sở dữ liệu: {dbEx.InnerException?.Message ?? dbEx.Message}"
+                });
+            }
+            catch (KeyNotFoundException knfEx)
+            {
+                return Json(new { success = false, message = knfEx.Message });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = $"Lỗi khi xóa khoa: {ex.Message}"
+                });
+            }
+        }
     }
 }

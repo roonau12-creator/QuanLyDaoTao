@@ -1,16 +1,25 @@
 using Microsoft.EntityFrameworkCore;
-using QuanLySinhVien.DataAccess.Data;
-using QuanLySinhVien.Business;
-using QuanLySinhVien.Business.Services;
+using QuanLyDaoTao.DataAccess.Data;
+using QuanLyDaoTao.Business;
+using QuanLyDaoTao.Business.Services;
+using QuanLyDaoTao.Business.Services.IServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.s
+// Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAntiforgery(options =>
+{
+    options.HeaderName = "RequestVerificationToken";
+    options.FormFieldName = "__RequestVerificationToken";
+});
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IKhoaService,KhoaService>();
+builder.Services.AddScoped<ILopService,LopService>();
+builder.Services.AddScoped<ISinhVienService,SinhVienService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
