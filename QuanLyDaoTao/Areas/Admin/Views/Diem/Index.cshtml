@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Danh sách điểm";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                Danh sách điểm
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <table id="tblData"
+                   class="table table-bordered table-striped"
+                   style="width:100%">
+
+                <thead>
+                    <tr>
+                        <th>Mã điểm</th>
+                        <th>Mã sinh viên</th>
+                        <th>Họ tên</th>
+                        <th>Học phần</th>
+                        <th>Chuyên cần</th>
+                        <th>Nhận xét</th>
+                        <th>Giữa kỳ</th>
+                        <th>Cuối kỳ</th>
+                        <th>Tổng kết</th>
+                        <th>Kết quả</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script src="~/js/diem.js"></script>
+}

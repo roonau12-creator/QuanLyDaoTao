@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using QuanLyDaoTao.Business.Services.IServices;
 using QuanLyDaoTao.DataAccess.Data;
-using QuanLyDaoTao.DataAccess.Migrations;
 using SinhVien = QuanLyDaoTao.Models.SinhVien;
 
 namespace QuanLyDaoTao.Business.Services;
@@ -18,7 +17,7 @@ public class SinhVienService:ISinhVienService
     {
         if (includeLop)
         {
-            return await _dbContext.sinhViens.Include(x => x.Lop).ThenInclude(l=>l.Khoa).ToListAsync();
+            return await _dbContext.sinhViens.Include(x => x.Lop).ThenInclude(l => l!.Khoa).ToListAsync();
         }
         return await _dbContext.sinhViens.ToListAsync();
     }
@@ -27,7 +26,7 @@ public class SinhVienService:ISinhVienService
     {
         if (includeLop)
         {
-            return await _dbContext.sinhViens.Include(lop => lop.Lop).ThenInclude(l=>l.Khoa).FirstOrDefaultAsync(u => u.MaSinhVien == id);
+            return await _dbContext.sinhViens.Include(lop => lop.Lop).ThenInclude(l => l!.Khoa).FirstOrDefaultAsync(u => u.MaSinhVien == id);
         }
 
         return await _dbContext.sinhViens.FirstOrDefaultAsync(u => u.MaSinhVien == id);

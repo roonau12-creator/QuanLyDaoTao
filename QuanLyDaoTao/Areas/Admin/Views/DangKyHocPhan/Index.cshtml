@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Đăng ký học phần";
+}
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+            Danh sách học phần mở đăng ký
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table id="tblData"
+                   class="table table-bordered table-striped table-hover"
+                   style="width:100%">
+
+                <thead>
+                    <tr>
+                        <th>Mã học phần</th>
+                        <th>Môn học</th>
+                        <th>Số tín chỉ</th>
+                        <th>Giảng viên</th>
+                        <th>Học kỳ</th>
+                        <th>Sĩ số</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script src="~/js/dangkyhocphan.js"></script>
+}

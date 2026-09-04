@@ -1,0 +1,166 @@
+@using QuanLyDaoTao.Models.ViewModels
+@model SinhVienVM
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-xl-8">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <!-- Header -->
+                <div class="card-header bg-primary text-white p-4 border-0">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="fas fa-user-graduate fs-3"></i>
+                        <h4 class="mb-0 fw-semibold">
+                            @(Model.SinhVien.MaSinhVien == 0 ? "Thêm mới sinh viên" : "Cập nhật thông tin sinh viên")
+                        </h4>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-4 p-md-5">
+                    <form method="post" enctype="multipart/form-data" id="studentForm">
+                        <input asp-for="SinhVien.MaSinhVien" type="hidden" />
+                        <input asp-for="SinhVien.AnhDaiDien" type="hidden" />
+
+                        @* === SECTION: THÔNG TIN CÁ NHÂN === *@
+                        <h6 class="text-muted text-uppercase fw-bold mb-3 small ls-1">Thông tin cá nhân</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="SinhVien.MaSoSinhVien" class="form-control border-0 bg-light" placeholder="Mã số SV" />
+                                    <label asp-for="SinhVien.MaSoSinhVien"><i class="fas fa-id-badge me-1 text-primary"></i> Mã số sinh viên</label>
+                                </div>
+                                <span asp-validation-for="SinhVien.MaSoSinhVien" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="SinhVien.Hoten" class="form-control border-0 bg-light" placeholder="Họ tên" />
+                                    <label asp-for="SinhVien.Hoten"><i class="fas fa-user me-1 text-primary"></i> Họ và tên</label>
+                                </div>
+                                <span asp-validation-for="SinhVien.Hoten" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="SinhVien.NgaySinh" class="form-label small text-muted fw-semibold ms-1">
+                                    <i class="fas fa-calendar-alt me-1 text-primary"></i> Ngày sinh
+                                </label>
+                                <input type="date" asp-for="SinhVien.NgaySinh" class="form-control border-0 bg-light" />
+                                <span asp-validation-for="SinhVien.NgaySinh" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="SinhVien.GioiTinh" class="form-label small text-muted fw-semibold ms-1">
+                                    <i class="fas fa-venus-mars me-1 text-primary"></i> Giới tính
+                                </label>
+                                <select asp-for="SinhVien.GioiTinh" class="form-select border-0 bg-light">
+                                    <option value="" disabled>-- Chọn giới tính --</option>
+                                    <option value="true">Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>
+                                <span asp-validation-for="SinhVien.GioiTinh" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="SinhVien.CanCuocCongDan" class="form-control border-0 bg-light" placeholder="CCCD" />
+                                    <label asp-for="SinhVien.CanCuocCongDan"><i class="fas fa-passport me-1 text-primary"></i> CCCD / CMND</label>
+                                </div>
+                                <span asp-validation-for="SinhVien.CanCuocCongDan" class="text-danger small ms-1"></span>
+                            </div>
+                        </div>
+
+                        @* === SECTION: LIÊN HỆ & HỌC TẬP === *@
+                        <h6 class="text-muted text-uppercase fw-bold mb-3 small ls-1">Liên hệ & Học tập</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="SinhVien.Email" class="form-control border-0 bg-light" placeholder="Email" />
+                                    <label asp-for="SinhVien.Email"><i class="fas fa-envelope me-1 text-primary"></i> Email</label>
+                                </div>
+                                <span asp-validation-for="SinhVien.Email" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="SinhVien.SoDienThoai" class="form-control border-0 bg-light" placeholder="SĐT" />
+                                    <label asp-for="SinhVien.SoDienThoai"><i class="fas fa-phone me-1 text-primary"></i> Số điện thoại</label>
+                                </div>
+                                <span asp-validation-for="SinhVien.SoDienThoai" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="SinhVien.DiaChi" class="form-control border-0 bg-light" placeholder="Địa chỉ" />
+                                    <label asp-for="SinhVien.DiaChi"><i class="fas fa-map-marker-alt me-1 text-primary"></i> Địa chỉ thường trú</label>
+                                </div>
+                                <span asp-validation-for="SinhVien.DiaChi" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="SinhVien.NgayNhapHoc" class="form-label small text-muted fw-semibold ms-1">
+                                    <i class="fas fa-school me-1 text-primary"></i> Ngày nhập học
+                                </label>
+                                <input type="date" asp-for="SinhVien.NgayNhapHoc" class="form-control border-0 bg-light" />
+                                <span asp-validation-for="SinhVien.NgayNhapHoc" class="text-danger small ms-1"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="SinhVien.MaLop" class="form-label small text-muted fw-semibold ms-1">
+                                    <i class="fas fa-chalkboard-teacher me-1 text-primary"></i> Lớp học
+                                </label>
+                                <select asp-for="SinhVien.MaLop" asp-items="Model.LopList" class="form-select border-0 bg-light">
+                                    <option value="" disabled>-- Chọn lớp --</option>
+                                </select>
+                                <span asp-validation-for="SinhVien.MaLop" class="text-danger small ms-1"></span>
+                            </div>
+                        </div>
+
+                        @* === SECTION: ẢNH ĐẠI DIỆN === *@
+                        <h6 class="text-muted text-uppercase fw-bold mb-3 small ls-1">Ảnh đại diện</h6>
+                        <div class="d-flex align-items-start gap-4 mb-4">
+                            <div class="flex-shrink-0">
+                                <img id="avatarPreview"
+                                     src="@(!string.IsNullOrEmpty(Model.SinhVien.AnhDaiDien) ? Url.Content("~/" + Model.SinhVien.AnhDaiDien) : "https://via.placeholder.com/120x120?text=No+Image")"
+                                     alt="Avatar Preview"
+                                     class="rounded-circle border shadow-sm"
+                                     style="width:120px; height:120px; object-fit:cover;" />
+                            </div>
+                            <div class="flex-grow-1 pt-2">
+                                <label class="form-label small text-muted fw-semibold">
+                                    <i class="fas fa-camera me-1 text-primary"></i> Chọn ảnh đại diện
+                                </label>
+                                <input name="file" type="file" accept="image/*"
+                                       class="form-control border-0 bg-light" id="fileInput" />
+                                <span asp-validation-for="SinhVien.AnhDaiDien" class="text-danger small ms-1"></span>
+                                <small class="text-muted d-block mt-1">Định dạng: JPG, PNG. Tối đa 5MB.</small>
+                            </div>
+                        </div>
+
+                        @* === BUTTONS === *@
+                        <hr class="my-4" />
+                        <div class="d-flex justify-content-end gap-3">
+                            <a href="@Url.Action("Index")" class="btn btn-outline-secondary px-4 rounded-pill">
+                                <i class="fas fa-times me-1"></i> Hủy
+                            </a>
+                            <button type="submit" class="btn btn-success px-4 rounded-pill shadow-sm">
+                                <i class="fas fa-save me-1"></i>
+                                @(Model.SinhVien.MaSinhVien == 0 ? "Thêm mới" : "Lưu thay đổi")
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Preview ảnh khi chọn file
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    document.getElementById('avatarPreview').src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

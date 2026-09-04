@@ -1,0 +1,43 @@
+@using QuanLyDaoTao.Models
+@model HocKy
+@{
+    var isEdit = Model != null && Model.MaHocKy != 0;
+}
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center align-items-center" style="height:100vh;">
+        <div class="card shadow border-0 rounded w-50">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">@(isEdit ? "Sửa học kỳ" : "Thêm học kỳ")</h4>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form asp-action="Upsert" method="post">
+                    <input asp-for="MaHocKy" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="TenHocKy">Tên học kỳ</label>
+                        <input type="text" class="form-control" asp-for="TenHocKy" required />
+                        <span asp-validation-for="TenHocKy" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NamHoc">Năm học</label>
+                        <input type="text" class="form-control" asp-for="NamHoc" required />
+                        <span asp-validation-for="NamHoc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NgayBatDau">Ngày bắt đầu</label>
+                        <input type="date" class="form-control" asp-for="NgayBatDau" required />
+                        <span asp-validation-for="NgayBatDau" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NgayKetThuc">Ngày kết thúc</label>
+                        <input type="date" class="form-control" asp-for="NgayKetThuc" required />
+                        <span asp-validation-for="NgayKetThuc" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">@(isEdit ? "Sửa" : "Thêm")</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

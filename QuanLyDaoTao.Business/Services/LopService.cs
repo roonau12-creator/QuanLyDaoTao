@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using QuanLyDaoTao.Business;
+using QuanLyDaoTao.Business.Services.IServices;
 using QuanLyDaoTao.DataAccess.Data;
 using QuanLyDaoTao.Models;
 

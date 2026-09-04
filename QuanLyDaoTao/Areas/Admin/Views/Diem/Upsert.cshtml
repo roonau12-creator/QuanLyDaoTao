@@ -1,0 +1,159 @@
+@model Diem
+
+@{
+    ViewData["Title"] =
+        Model.MaDiem == 0 ? "Thêm điểm" : "Sửa điểm";
+
+    var danhSachDangKy =
+        ViewBag.DangKyHocPhans as IEnumerable<DangKyHocPhan>;
+}
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+            @(Model.MaDiem == 0 ? "Thêm điểm" : "Sửa điểm")
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        <form asp-action="Upsert" method="post">
+
+            <input type="hidden"
+                   asp-for="MaDiem" />
+
+            <div class="mb-3">
+
+                <label asp-for="MaDangKy"
+                       class="form-label">
+                    Đăng ký học phần
+                </label>
+
+                <select asp-for="MaDangKy"
+                        class="form-select">
+
+                    <option value="">
+                        -- Chọn đăng ký học phần --
+                    </option>
+
+                    @if (danhSachDangKy != null)
+                    {
+                        foreach (var item in danhSachDangKy)
+                        {
+                            <option value="@item.MaDangKy">
+
+                                @item.SinhVien.Hoten -
+                                @item.HocPhan.TenHocPhan
+
+                            </option>
+                        }
+                    }
+
+                </select>
+
+                <span asp-validation-for="MaDangKy"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label asp-for="DiemChuyenCan"
+                           class="form-label">
+                        Điểm chuyên cần
+                    </label>
+
+                    <input asp-for="DiemChuyenCan"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           max="10"
+                           class="form-control" />
+
+                    <span asp-validation-for="DiemChuyenCan"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label asp-for="DiemNhanXet"
+                           class="form-label">
+                        Điểm nhận xét
+                    </label>
+
+                    <input asp-for="DiemNhanXet"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           max="10"
+                           class="form-control" />
+
+                    <span asp-validation-for="DiemNhanXet"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label asp-for="DiemGiuaKy"
+                           class="form-label">
+                        Điểm giữa kỳ
+                    </label>
+
+                    <input asp-for="DiemGiuaKy"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           max="10"
+                           class="form-control" />
+
+                    <span asp-validation-for="DiemGiuaKy"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label asp-for="DiemCuoiKy"
+                           class="form-label">
+                        Điểm cuối kỳ
+                    </label>
+
+                    <input asp-for="DiemCuoiKy"
+                           type="number"
+                           step="0.01"
+                           min="0"
+                           max="10"
+                           class="form-control" />
+
+                    <span asp-validation-for="DiemCuoiKy"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                @(Model.MaDiem == 0 ? "Thêm" : "Cập nhật")
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Quay lại
+            </a>
+
+        </form>
+
+    </div>
+
+</div>

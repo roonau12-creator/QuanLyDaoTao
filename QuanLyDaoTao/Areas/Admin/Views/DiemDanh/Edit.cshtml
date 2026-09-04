@@ -1,0 +1,86 @@
+@model QuanLyDaoTao.Models.ViewModels.DiemDanhVM
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Sửa điểm danh</h4>
+    </div>
+
+    <div class="card-body">
+
+        <form asp-action="Upsert" method="post">
+
+            <input asp-for="DiemDanh.MaDiemDanh" type="hidden" />
+
+            <div class="mb-3">
+                <label class="form-label">Sinh viên</label>
+
+                <input type="text"
+                       class="form-control"
+                       value="@Model.DiemDanh.MaSinhVien"
+                       readonly />
+
+                <input asp-for="DiemDanh.MaSinhVien"
+                       type="hidden" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Lịch học</label>
+
+                <input type="text"
+                       class="form-control"
+                       value="@Model.DiemDanh.MaLichHoc"
+                       readonly />
+
+                <input asp-for="DiemDanh.MaLichHoc"
+                       type="hidden" />
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="DiemDanh.TrangThai"
+                       class="form-label">
+                    Trạng thái
+                </label>
+
+                <select asp-for="DiemDanh.TrangThai"
+                        class="form-select">
+
+                    <option value="Có mặt">Có mặt</option>
+                    <option value="Vắng">Vắng</option>
+                    <option value="Đi trễ">Đi trễ</option>
+                    <option value="Có phép">Có phép</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="DiemDanh.GhiChu"
+                       class="form-label">
+                    Ghi chú
+                </label>
+
+                <textarea asp-for="DiemDanh.GhiChu"
+                          class="form-control"
+                          rows="4">
+                </textarea>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Cập nhật
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Quay lại
+            </a>
+
+        </form>
+
+    </div>
+
+</div>

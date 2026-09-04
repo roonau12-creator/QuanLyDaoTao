@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -33,10 +33,14 @@
           <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="Khoa">Khoa</a>
           <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="Lop">Lớp</a>
           <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="SinhVien">Sinh Viên</a>
+          <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="MonHoc">Môn học</a>
+          <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="GiangVien">Giảng viên</a>
+          <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="DangKyHocPhan">Đăng ký học phần</a>
+          <a class="nav-link" asp-action="DaDangKy" asp-area="Admin" asp-controller="DangKyHocPhan">Học phần đã đăng ký</a>
         </nav>
 
         <div class="d-none d-md-flex gap-2">
-          <button class="btn btn-outline-primary px-3">Đăng nhập</button>
+          <a class="btn btn-outline-primary px-3" asp-area="Identity" asp-controller="Account" asp-action="Login">Đăng nhập</a>
           <button class="btn btn-primary px-3">Đăng ký</button>
         </div>
 
@@ -61,7 +65,7 @@
         <a class="nav-link" href="#guides">Hướng dẫn</a>
         <a class="nav-link" href="#contact">Liên hệ</a>
         <div class="d-flex gap-2 mt-2">
-          <button class="btn btn-outline-primary flex-fill">Đăng nhập</button>
+          <a class="btn btn-outline-primary flex-fill" asp-area="Identity" asp-controller="Account" asp-action="Login">Đăng nhập</a>
           <button class="btn btn-primary flex-fill">Đăng ký</button>
         </div>
       </nav>
@@ -74,10 +78,10 @@
         </main>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-3.0.2/datatables.min.js" asp-append-version="true" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

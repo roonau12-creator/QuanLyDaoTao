@@ -19,7 +19,7 @@ namespace QuanLyDaoTao.Models
         public int MaKhoa { get; set; }
         [ForeignKey("MaKhoa")]
         [ValidateNever]
-        public Khoa? Khoa { get; set; }
+        public Khoa Khoa { get; set; } = null!;
         public string MoTa { get; set; } = string.Empty;
     }
 }

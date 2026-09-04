@@ -15,6 +15,22 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.11": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.11"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -537,7 +553,7 @@
           }
         }
       },
-      "Npgsql/10.0.0": {
+      "Npgsql/10.0.3": {
         "type": "package",
         "compile": {
           "lib/net10.0/Npgsql.dll": {
@@ -550,12 +566,12 @@
           }
         }
       },
-      "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
+      "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "[10.0.0, 11.0.0)",
-          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
-          "Npgsql": "10.0.0"
+          "Microsoft.EntityFrameworkCore": "[10.0.4, 11.0.0)",
+          "Microsoft.EntityFrameworkCore.Relational": "[10.0.4, 11.0.0)",
+          "Npgsql": "10.0.3"
         },
         "compile": {
           "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
@@ -713,8 +729,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "10.0.11",
           "Microsoft.EntityFrameworkCore": "10.0.11",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.3",
           "QuanLyDaoTao.Models": "1.0.0"
         },
         "compile": {
@@ -727,11 +744,24 @@
       "QuanLyDaoTao.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "10.0.11"
+        },
         "compile": {
           "bin/placeholder/QuanLyDaoTao.Models.dll": {}
         },
         "runtime": {
           "bin/placeholder/QuanLyDaoTao.Models.dll": {}
+        }
+      },
+      "QuanLyDaoTao.Utility/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/QuanLyDaoTao.Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/QuanLyDaoTao.Utility.dll": {}
         }
       }
     }
@@ -753,6 +783,22 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.11": {
+      "sha512": "N3+Fs465t08FyrQ+uoQyYH6TehLjtuGr/v5IjlFZANBbsivq9M5xFCVD25Ktq+HpWCfWXIrRjoakgymzO2trlw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/10.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
+        "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
+        "microsoft.aspnetcore.identity.entityframeworkcore.10.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.0": {
@@ -2066,10 +2112,10 @@
         "packageIcon.png"
       ]
     },
-    "Npgsql/10.0.0": {
-      "sha512": "xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
+    "Npgsql/10.0.3": {
+      "sha512": "7nb5YzXuvWWJxB0J8DiyL3we+X4FOctZrt0fIBnucOIaIevFEEwGQVZKtiu9olXdlNAK1eNgqSral6r/jlhI4w==",
       "type": "package",
-      "path": "npgsql/10.0.0",
+      "path": "npgsql/10.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2080,22 +2126,22 @@
         "lib/net8.0/Npgsql.xml",
         "lib/net9.0/Npgsql.dll",
         "lib/net9.0/Npgsql.xml",
-        "npgsql.10.0.0.nupkg.sha512",
+        "npgsql.10.0.3.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
       ]
     },
-    "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
-      "sha512": "E2+uSWxSB8LdsUVwPaqRWOcGOP92biry2JEwc0KJMdLJF+aZdczeIdEXVwEyv4nSVMQJH0o8tLhyAMiR6VF0lw==",
+    "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.3": {
+      "sha512": "IPGrrZnRkuW7OlHDhUESZz4G5DLkW7Nej/O3Cx+0iTsgyU5XJxBgpsvTHLloo3WWuAKKbDHXBvWPVkX1deRh1Q==",
       "type": "package",
-      "path": "npgsql.entityframeworkcore.postgresql/10.0.0",
+      "path": "npgsql.entityframeworkcore.postgresql/10.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
         "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
-        "npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.10.0.3.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
       ]
@@ -2300,16 +2346,23 @@
       "type": "project",
       "path": "../QuanLyDaoTao.Models/QuanLyDaoTao.Models.csproj",
       "msbuildProject": "../QuanLyDaoTao.Models/QuanLyDaoTao.Models.csproj"
+    },
+    "QuanLyDaoTao.Utility/1.0.0": {
+      "type": "project",
+      "path": "../QuanLyDaoTao.Utility/QuanLyDaoTao.Utility.csproj",
+      "msbuildProject": "../QuanLyDaoTao.Utility/QuanLyDaoTao.Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 10.0.11",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 10.0.11",
       "Microsoft.EntityFrameworkCore >= 10.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 10.0.11",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 10.0.0",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 10.0.3",
       "QuanLyDaoTao.Business >= 1.0.0",
-      "QuanLyDaoTao.Models >= 1.0.0"
+      "QuanLyDaoTao.Models >= 1.0.0",
+      "QuanLyDaoTao.Utility >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2343,6 +2396,9 @@
             },
             "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLyDaoTao.Models.csproj": {
               "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Models/QuanLyDaoTao.Models.csproj"
+            },
+            "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLyDaoTao.Utility.csproj": {
+              "projectPath": "/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/QuanLyDaoTao.Utility.csproj"
             }
           }
         }
@@ -2363,6 +2419,10 @@
       "net10.0": {
         "targetAlias": "net10.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[10.0.11, )"
+          },
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
             "target": "Package",
             "version": "[10.0.11, )"
@@ -2379,7 +2439,7 @@
           },
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
-            "version": "[10.0.0, )"
+            "version": "[10.0.3, )"
           }
         },
         "imports": [

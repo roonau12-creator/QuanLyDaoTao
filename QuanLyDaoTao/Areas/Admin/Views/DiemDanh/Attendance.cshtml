@@ -1,0 +1,135 @@
+@model QuanLyDaoTao.Models.ViewModels.DiemDanhVM
+
+@{
+    ViewData["Title"] = "Điểm danh sinh viên";
+}
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4 class="mb-0">
+            Điểm danh sinh viên
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <form asp-action="Attendance" method="post">
+
+            <input asp-for="LichHoc.MaLichHoc" type="hidden" />
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã sinh viên</th>
+                            <th>Họ tên</th>
+                            <th>Trạng thái</th>
+                            <th>Ghi chú</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @{
+                            int stt = 1;
+                        }
+
+                        @foreach (var item in Model.ListSinhVien)
+                        {
+                            <tr>
+
+                                <td>
+                                    @stt
+                                </td>
+
+                                <td>
+
+                                    @item.MaSinhVien
+
+                                    <input type="hidden"
+                                           name="SinhViens[@(stt - 1)].MaSinhVien"
+                                           value="@item.MaSinhVien" />
+
+                                </td>
+
+                                <td>
+                                    @item.Hoten
+                                </td>
+
+                                <td>
+
+                                    <select name="SinhViens[@(stt - 1)].TrangThai"
+                                            class="form-select">
+
+                                        <option value="Có mặt">
+                                            Có mặt
+                                        </option>
+
+                                        <option value="Vắng">
+                                            Vắng
+                                        </option>
+
+                                        <option value="Đi trễ">
+                                            Đi trễ
+                                        </option>
+
+                                        <option value="Có phép">
+                                            Có phép
+                                        </option>
+
+                                    </select>
+
+                                </td>
+
+                                <td>
+
+                                    <input type="text"
+                                           name="SinhViens[@(stt - 1)].GhiChu"
+                                           class="form-control"
+                                           placeholder="Ghi chú..." />
+
+                                </td>
+
+                            </tr>
+
+                            stt++;
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="mt-3">
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    <i class="bi bi-check-circle"></i>
+                    Lưu điểm danh
+
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    Quay lại
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

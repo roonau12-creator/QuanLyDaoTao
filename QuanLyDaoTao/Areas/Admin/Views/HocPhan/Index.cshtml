@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Quản lý học phần";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h4 class="mb-0">
+                    Quản lý học phần
+                </h4>
+
+                <a asp-area="Admin"
+                   asp-controller="HocPhan"
+                   asp-action="Upsert"
+                   class="btn btn-light">
+
+                    <i class="bi bi-plus-circle"></i>
+                    Thêm học phần
+
+                </a>
+
+            </div>
+        </div>
+
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table id="tblData"
+                       class="table table-bordered table-striped table-hover">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th>Mã học phần</th>
+                            <th>Môn học</th>
+                            <th>Học kỳ</th>
+                            <th>Giảng viên</th>
+                            <th>Sĩ số</th>
+                            <th>Ngày mở</th>
+                            <th>Ngày đóng</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <script src="~/js/hocphan.js"></script>
+
+}

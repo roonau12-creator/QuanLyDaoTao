@@ -1,0 +1,123 @@
+@model IEnumerable<QuanLyDaoTao.Models.DiemDanh>
+
+@{
+    ViewData["Title"] = "Lịch sử điểm danh";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Lịch sử điểm danh
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped table-hover">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã sinh viên</th>
+                            <th>Sinh viên</th>
+                            <th>Mã lịch học</th>
+                            <th>Thứ</th>
+                            <th>Tiết</th>
+                            <th>Trạng thái</th>
+                            <th>Ghi chú</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @{
+                            int stt = 1;
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @stt
+                                </td>
+
+                                <td>
+                                    @item.MaSinhVien
+                                </td>
+
+                                <td>
+                                    @item.SinhVien.Hoten
+                                </td>
+
+                                <td>
+                                    @item.MaLichHoc
+                                </td>
+
+                                <td>
+                                    @item.LichHoc.Thu
+                                </td>
+
+                                <td>
+                                    @item.LichHoc.TietBatDau -
+                                    @(item.LichHoc.TietBatDau + item.LichHoc.SoTiet - 1)
+                                </td>
+
+                                <td>
+
+                                    @if (item.TrangThai == "Có mặt")
+                                    {
+                                        <span class="badge bg-success">
+                                            Có mặt
+                                        </span>
+                                    }
+                                    else if (item.TrangThai == "Vắng")
+                                    {
+                                        <span class="badge bg-danger">
+                                            Vắng
+                                        </span>
+                                    }
+                                    else if (item.TrangThai == "Đi trễ")
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                            Đi trễ
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-info">
+                                            @item.TrangThai
+                                        </span>
+                                    }
+
+                                </td>
+
+                                <td>
+                                    @item.GhiChu
+                                </td>
+
+                            </tr>
+
+                            stt++;
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -8,7 +8,7 @@
     var totalClasses = lopList.Count;
     var totalKhoa = lopList
         .Where(l => l.Khoa != null)
-        .Select(l => l.Khoa.MaKhoa)
+        .Select(l => l.Khoa!.MaKhoa)
         .Distinct()
         .Count();
 }

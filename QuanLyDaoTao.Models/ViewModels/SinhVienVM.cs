@@ -9,10 +9,10 @@ namespace QuanLyDaoTao.Models.ViewModels
 {
     public class SinhVienVM
     {
-        public SinhVien SinhVien { get; set; }
+        public SinhVien SinhVien { get; set; } = new();
         [ValidateNever]
-        public IEnumerable<SelectListItem> LopList { get; set; }
+        public IEnumerable<SelectListItem> LopList { get; set; } = Enumerable.Empty<SelectListItem>();
         [ValidateNever]
-        public IEnumerable<SelectListItem>KhoaList { get; set; }
+        public IEnumerable<SelectListItem>KhoaList { get; set; } = Enumerable.Empty<SelectListItem>();
     }
 }

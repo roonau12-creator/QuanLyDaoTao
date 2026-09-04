@@ -2,10 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using QuanLyDaoTao.DataAccess.Migrations;
 using QuanLyDaoTao.Models;
-using SinhVien = QuanLyDaoTao.Models.SinhVien;
-
 namespace QuanLyDaoTao.Business.Services.IServices
 {
     public interface ISinhVienService

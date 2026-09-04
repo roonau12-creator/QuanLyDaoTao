@@ -1,0 +1,30 @@
+﻿services:
+  quanlydaotao:
+    build:
+      context: .
+      dockerfile: QuanLyDaoTao/Dockerfile
+    ports:
+      - "8083:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=QuanLySinhVien;Username=postgres;Password=123"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: QuanLySinhVien
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d QuanLySinhVien"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

@@ -9,6 +9,5 @@ public interface IKhoaService
     Task CreateKhoaAsync(Khoa khoa);
     Task UpdateKhoaAsync(Khoa khoa);
     Task DeleteKhoaAsync(int id);
-    Task<(int LopCount, int MonHocCount)> GetRelatedCountsAsync(int khoaId);
 
 }

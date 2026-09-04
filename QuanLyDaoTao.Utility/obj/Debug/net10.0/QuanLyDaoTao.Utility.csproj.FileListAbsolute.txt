@@ -1,0 +1,12 @@
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/bin/Debug/net10.0/QuanLyDaoTao.Utility.deps.json
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/bin/Debug/net10.0/QuanLyDaoTao.Utility.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/bin/Debug/net10.0/QuanLyDaoTao.Utility.pdb
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/QuanLyDaoTao.Utility.GeneratedMSBuildEditorConfig.editorconfig
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/QuanLyDaoTao.Utility.AssemblyInfoInputs.cache
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/QuanLyDaoTao.Utility.AssemblyInfo.cs
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/QuanLyDaoTao.Utility.csproj.CoreCompileInputs.cache
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/QuanLyDaoTao.Utility.sourcelink.json
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/QuanLyDaoTao.Utility.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/refint/QuanLyDaoTao.Utility.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/QuanLyDaoTao.Utility.pdb
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao.Utility/obj/Debug/net10.0/ref/QuanLyDaoTao.Utility.dll

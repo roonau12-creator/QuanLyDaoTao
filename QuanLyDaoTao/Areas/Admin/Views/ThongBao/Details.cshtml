@@ -1,0 +1,131 @@
+@model QuanLyDaoTao.Models.ThongBao
+
+@{
+    ViewData["Title"] = "Chi tiết thông báo";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Chi tiết thông báo
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="mb-4">
+
+                <h3 class="fw-bold">
+                    @Model.TieuDe
+                </h3>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Loại thông báo
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.LoaiNoiDung"
+                           readonly />
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Người đăng
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.NguoiDang"
+                           readonly />
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Ngày đăng
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.NgayDang.ToString("dd/MM/yyyy")"
+                           readonly />
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Ngày hết hạn
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@(Model.NgayHetHan.HasValue
+                               ? Model.NgayHetHan.Value.ToString("dd/MM/yyyy")
+                               : "Không có")"
+                           readonly />
+
+                </div>
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <label class="fw-bold mb-2">
+                    Nội dung thông báo
+                </label>
+
+                <div class="border rounded p-3 bg-light"
+                     style="min-height: 200px;">
+
+                    @Model.NoiDung
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    Quay lại
+
+                </a>
+
+                <a asp-action="Upsert"
+                   asp-route-id="@Model.MaThongBao"
+                   class="btn btn-success">
+
+                    Sửa thông báo
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

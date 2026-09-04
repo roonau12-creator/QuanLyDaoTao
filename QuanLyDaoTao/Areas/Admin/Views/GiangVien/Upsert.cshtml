@@ -1,0 +1,345 @@
+@model QuanLyDaoTao.Models.ViewModels.GiangVienVM
+
+@{
+    bool isEdit = Model.GiangVien.MaGiangVien != 0;
+
+    ViewData["Title"] = isEdit
+        ? "Cập nhật giảng viên"
+        : "Thêm giảng viên";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h4 class="mb-0">
+                        @(isEdit
+                            ? "Cập nhật giảng viên"
+                            : "Thêm giảng viên")
+                    </h4>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <form asp-action="Upsert"
+                          method="post">
+
+                        <input asp-for="GiangVien.MaGiangVien"
+                               type="hidden" />
+
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger mb-3">
+                        </div>
+
+
+                        <!-- Mã số giảng viên -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.MaSoGiangVien"
+                                   class="form-label">
+                                Mã số giảng viên
+                            </label>
+
+                            <input asp-for="GiangVien.MaSoGiangVien"
+                                   class="form-control"
+                                   placeholder="Nhập mã số giảng viên" />
+
+                            <span asp-validation-for="GiangVien.MaSoGiangVien"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Họ tên -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.HoTen"
+                                   class="form-label">
+                                Họ tên
+                            </label>
+
+                            <input asp-for="GiangVien.HoTen"
+                                   class="form-control"
+                                   placeholder="Nhập họ tên" />
+
+                            <span asp-validation-for="GiangVien.HoTen"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Ngày sinh -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.NgaySinh"
+                                   class="form-label">
+                                Ngày sinh
+                            </label>
+
+                            <input asp-for="GiangVien.NgaySinh"
+                                   type="date"
+                                   class="form-control" />
+
+                            <span asp-validation-for="GiangVien.NgaySinh"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Giới tính -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.GioiTinh"
+                                   class="form-label">
+                                Giới tính
+                            </label>
+
+                            <select asp-for="GiangVien.GioiTinh"
+                                    class="form-select">
+
+                                <option value="">
+                                    -- Chọn giới tính --
+                                </option>
+
+                                <option value="Nam">
+                                    Nam
+                                </option>
+
+                                <option value="Nữ">
+                                    Nữ
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="GiangVien.GioiTinh"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.Email"
+                                   class="form-label">
+                                Email
+                            </label>
+
+                            <input asp-for="GiangVien.Email"
+                                   type="email"
+                                   class="form-control"
+                                   placeholder="example@gmail.com" />
+
+                            <span asp-validation-for="GiangVien.Email"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Số điện thoại -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.SoDienThoai"
+                                   class="form-label">
+                                Số điện thoại
+                            </label>
+
+                            <input asp-for="GiangVien.SoDienThoai"
+                                   class="form-control"
+                                   placeholder="Nhập số điện thoại" />
+
+                            <span asp-validation-for="GiangVien.SoDienThoai"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Địa chỉ -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.DiaChi"
+                                   class="form-label">
+                                Địa chỉ
+                            </label>
+
+                            <textarea asp-for="GiangVien.DiaChi"
+                                      class="form-control"
+                                      rows="3"
+                                      placeholder="Nhập địa chỉ">
+                            </textarea>
+
+                            <span asp-validation-for="GiangVien.DiaChi"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Học vị -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.HocVi"
+                                   class="form-label">
+                                Học vị
+                            </label>
+
+                            <select asp-for="GiangVien.HocVi"
+                                    class="form-select">
+
+                                <option value="">
+                                    -- Chọn học vị --
+                                </option>
+
+                                <option value="Cử nhân">
+                                    Cử nhân
+                                </option>
+
+                                <option value="Thạc sĩ">
+                                    Thạc sĩ
+                                </option>
+
+                                <option value="Tiến sĩ">
+                                    Tiến sĩ
+                                </option>
+
+                                <option value="Phó giáo sư">
+                                    Phó giáo sư
+                                </option>
+
+                                <option value="Giáo sư">
+                                    Giáo sư
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="GiangVien.HocVi"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Chức vụ -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.ChucVu"
+                                   class="form-label">
+                                Chức vụ
+                            </label>
+
+                            <input asp-for="GiangVien.ChucVu"
+                                   class="form-control"
+                                   placeholder="Ví dụ: Trưởng khoa" />
+
+                            <span asp-validation-for="GiangVien.ChucVu"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Khoa -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="GiangVien.MaKhoa"
+                                   class="form-label">
+                                Khoa
+                            </label>
+
+                            <select asp-for="GiangVien.MaKhoa"
+                                    asp-items="Model.DanhSachKhoa"
+                                    class="form-select">
+
+                                <option value="">
+                                    -- Chọn khoa --
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="GiangVien.MaKhoa"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Trạng thái -->
+
+                        <div class="form-check mb-3">
+
+                            <input asp-for="GiangVien.TrangThai"
+                                   class="form-check-input" />
+
+                            <label asp-for="GiangVien.TrangThai"
+                                   class="form-check-label">
+                                Đang làm việc
+                            </label>
+
+                        </div>
+
+
+                        <!-- Button -->
+
+                        <div class="d-flex gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                @(isEdit ? "Cập nhật" : "Thêm mới")
+
+                            </button>
+
+
+                            <a asp-action="Index"
+                               class="btn btn-secondary">
+
+                                Quay lại
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync(
+            "_ValidationScriptsPartial");
+    }
+}

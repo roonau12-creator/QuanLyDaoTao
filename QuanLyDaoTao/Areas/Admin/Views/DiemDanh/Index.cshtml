@@ -1,0 +1,114 @@
+@{
+    ViewData["Title"] = "Danh sách điểm danh";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Danh sách điểm danh
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Tìm kiếm sinh viên
+                    </label>
+
+                    <input type="text"
+                           id="txtSearch"
+                           class="form-control"
+                           placeholder="Mã sinh viên hoặc họ tên..." />
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <label class="form-label">
+                        Trạng thái
+                    </label>
+
+                    <select id="filterTrangThai"
+                            class="form-select">
+
+                        <option value="">
+                            Tất cả
+                        </option>
+
+                        <option value="Có mặt">
+                            Có mặt
+                        </option>
+
+                        <option value="Vắng">
+                            Vắng
+                        </option>
+
+                        <option value="Đi trễ">
+                            Đi trễ
+                        </option>
+
+                        <option value="Có phép">
+                            Có phép
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table id="tblData"
+                       class="table table-bordered table-striped table-hover">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Mã điểm danh</th>
+
+                            <th>Mã sinh viên</th>
+
+                            <th>Sinh viên</th>
+
+                            <th>Mã lịch học</th>
+
+                            <th>Trạng thái</th>
+
+                            <th>Ghi chú</th>
+
+                            <th>Thao tác</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script src="~/js/diemdanh.js"></script>
+
+}   

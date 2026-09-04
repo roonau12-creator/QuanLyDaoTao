@@ -1,0 +1,121 @@
+@model QuanLyDaoTao.Models.ViewModels.DangKyHocPhanVM
+
+@{
+    ViewData["Title"] = "Đăng ký học phần";
+}
+
+<div class="container">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                Đăng ký học phần
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Mã học phần
+                    </label>
+
+                    <input class="form-control"
+                           value="@Model.MaHocPhan"
+                           readonly />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Tên học phần
+                    </label>
+
+                    <input class="form-control"
+                           value="@Model.TenHocPhan"
+                           readonly />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Môn học
+                    </label>
+
+                    <input class="form-control"
+                           value="@Model.TenMonHoc"
+                           readonly />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Số tín chỉ
+                    </label>
+
+                    <input class="form-control"
+                           value="@Model.SoTinChi"
+                           readonly />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Học kỳ
+                    </label>
+
+                    <input class="form-control"
+                           value="@Model.TenHocKy"
+                           readonly />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Sĩ số
+                    </label>
+
+                    <input class="form-control"
+                           value="@Model.SoLuongDaDangKy / @Model.SiSoToiDa"
+                           readonly />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">
+                        Số chỗ còn lại
+                    </label>
+
+                    <input class="form-control"
+                           value="@Model.SoChoConLai"
+                           readonly />
+                </div>
+
+            </div>
+
+            <hr />
+
+            <form asp-action="DangKy" method="post">
+
+                <input type="hidden"
+                       asp-for="MaHocPhan" />
+
+                <button type="submit"
+                        class="btn btn-primary"
+                        @(Model.SoChoConLai <= 0 ? "disabled" : "")>
+
+                    Xác nhận đăng ký
+
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    Quay lại
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

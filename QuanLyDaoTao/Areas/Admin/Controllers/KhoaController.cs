@@ -82,19 +82,6 @@ namespace QuanLySinhVien.Areas.Admin
                 return Json(new { success = false, message = "Không tìm thấy khoa cần xóa." });
             }
 
-            var (lopCount, monHocCount) = await _context.GetRelatedCountsAsync(id);
-            if (lopCount > 0 || monHocCount > 0)
-            {
-                var parts = new List<string>();
-                if (lopCount > 0) parts.Add($"{lopCount} lớp");
-                if (monHocCount > 0) parts.Add($"{monHocCount} môn học");
-                return Json(new
-                {
-                    success = false,
-                    message = $"Không thể xóa khoa \"{khoa.TenKhoa}\" vì còn {string.Join(" và ", parts)} đang tham chiếu đến khoa này. Vui lòng xóa các bản ghi liên quan trước."
-                });
-            }
-
             try
             {
                 await _context.DeleteKhoaAsync(id);

@@ -1,0 +1,137 @@
+@model QuanLyDaoTao.Models.DiemDanh
+
+@{
+    ViewData["Title"] = "Chi tiết điểm danh";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Chi tiết điểm danh
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <!-- Mã điểm danh -->
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label fw-bold">
+                        Mã điểm danh
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.MaDiemDanh"
+                           readonly />
+
+                </div>
+
+
+                <!-- Mã sinh viên -->
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label fw-bold">
+                        Mã sinh viên
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.MaSinhVien"
+                           readonly />
+
+                </div>
+
+
+                <!-- Tên sinh viên -->
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label fw-bold">
+                        Sinh viên
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.SinhVien.Hoten"
+                           readonly />
+
+                </div>
+
+
+                <!-- Mã lịch học -->
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label fw-bold">
+                        Mã lịch học
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.MaLichHoc"
+                           readonly />
+
+                </div>
+
+
+                <!-- Trạng thái -->
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label fw-bold">
+                        Trạng thái
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.TrangThai"
+                           readonly />
+
+                </div>
+
+
+                <!-- Ghi chú -->
+                <div class="col-md-12 mb-3">
+
+                    <label class="form-label fw-bold">
+                        Ghi chú
+                    </label>
+
+                    <textarea class="form-control"
+                              rows="4"
+                              readonly>@Model.GhiChu</textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="mt-3">
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    Quay lại
+
+                </a>
+
+                <a asp-action="Upsert"
+                   asp-route-id="@Model.MaDiemDanh"
+                   class="btn btn-success">
+
+                    Sửa điểm danh
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,4 +1,7 @@
 {
-  "editor.formatOnSave": false,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "[csharp]": {
+    "editor.defaultFormatter": "JakubKozera.csharp-dev-tools"
+  }
 }

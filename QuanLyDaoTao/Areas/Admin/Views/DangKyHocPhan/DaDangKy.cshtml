@@ -1,0 +1,191 @@
+@model IEnumerable<QuanLyDaoTao.Models.DangKyHocPhan>
+
+@{
+    ViewData["Title"] = "Học phần đã đăng ký";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                Học phần đã đăng ký
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table id="tblData"
+                       class="table table-bordered table-striped table-hover"
+                       style="width:100%">
+
+                    <thead>
+                        <tr>
+                            <th>Mã đăng ký</th>
+                            <th>Mã học phần</th>
+                            <th>Tên học phần</th>
+                            <th>Môn học</th>
+                            <th>Tín chỉ</th>
+                            <th>Học kỳ</th>
+                            <th>Ngày đăng ký</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @item.MaDangKy
+                                </td>
+
+                                <td>
+                                    @item.MaHocPhan
+                                </td>
+
+                                <td>
+                                    @item.HocPhan?.TenHocPhan
+                                </td>
+
+                                <td>
+                                    @item.HocPhan?.MonHoc?.TenMonHoc
+                                </td>
+
+                                <td>
+                                    @item.HocPhan?.SoTinChi
+                                </td>
+
+                                <td>
+                                    @item.HocKy?.TenHocKy
+                                </td>
+
+                                <td>
+                                    @item.NgayDangKy.ToString("dd/MM/yyyy HH:mm")
+                                </td>
+
+                                <td>
+                                    @if (item.TrangThai == "Đã đăng ký")
+                                    {
+                                        <span class="badge bg-success">
+                                            Đã đăng ký
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @item.TrangThai
+                                        </span>
+                                    }
+                                </td>
+
+                                <td>
+
+                                    <a asp-action="Details"
+                                       asp-route-id="@item.MaDangKy"
+                                       class="btn btn-info btn-sm text-white">
+
+                                        Chi tiết
+
+                                    </a>
+
+                                    @if (item.TrangThai == "Đã đăng ký")
+                                    {
+                                        <button type="button"
+                                                onclick="HuyDangKy('/Admin/DangKyHocPhan/HuyDangKy/@item.MaDangKy')"
+                                                class="btn btn-danger btn-sm">
+
+                                            Hủy
+
+                                        </button>
+                                    }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#tblData").DataTable({
+                language: {
+                    emptyTable: "Chưa có học phần nào được đăng ký",
+                    zeroRecords: "Không tìm thấy",
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: {
+                        first: "Đầu",
+                        last: "Cuối",
+                        next: "Sau",
+                        previous: "Trước"
+                    }
+                }
+            });
+        });
+
+        function HuyDangKy(url) {
+            Swal.fire({
+                title: "Bạn có chắc muốn hủy?",
+                text: "Học phần sẽ được hủy khỏi danh sách đăng ký.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Hủy đăng ký",
+                cancelButtonText: "Không"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: "DELETE",
+                        success: function (data) {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: "Thành công!",
+                                    text: data.message,
+                                    icon: "success"
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Lỗi!",
+                                    text: data.message,
+                                    icon: "error"
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: "Lỗi!",
+                                text: "Có lỗi xảy ra khi hủy đăng ký.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

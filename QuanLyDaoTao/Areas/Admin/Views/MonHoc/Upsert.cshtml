@@ -1,0 +1,58 @@
+@using QuanLyDaoTao.Models.ViewModels
+@model MonHocVM
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center align-items-center" style="height:100vh;">
+        <div class="card shadow rounded border-0">
+            <div class="card-header bg-primary">
+                <h5 class="text-white mb-0">@(Model.MonHoc.MaMonHoc==0?"Thêm":"Cập nhật") Môn học</h5>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    <input asp-for="MonHoc.MaMonHoc" type="hidden" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="MonHoc.TenMonHoc" class="form-control shadow border-0" />
+                        <label asp-for="MonHoc.TenMonHoc" class="ms-2"></label>
+                        <span asp-validation-for="MonHoc.TenMonHoc" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="MonHoc.SoTinChi" class="form-control shadow border-0" />
+                        <label asp-for="MonHoc.SoTinChi" class="ms-2"></label>
+                        <span asp-validation-for="MonHoc.SoTinChi" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="MonHoc.MaKhoa" asp-items="Model.KhoaList" class="form-select shadow border-0">
+                            <option value="">-- Chọn khoa --</option>
+                        </select>
+                        <label asp-for="MonHoc.MaKhoa" class="ms-2"></label>
+                        <span asp-validation-for="MonHoc.MaKhoa" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="MonHoc.MoTa" class="form-control shadow border-0" />
+                        <label asp-for="MonHoc.MoTa" class="ms-2"></label>
+                        <span asp-validation-for="MonHoc.MoTa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        @if(Model.MonHoc.MaMonHoc==0)
+                            {
+                                <button type="submit" class="btn btn-primary text-white">Thêm</button>
+                                <a asp-action="Index" class="btn btn-info text-white">Quay lại
+                                </a>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary text-white">Cập nhật</button>
+                                <a asp-action="Index" class="btn btn-info text-white">Quay lại
+                                </a>
+                            }
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

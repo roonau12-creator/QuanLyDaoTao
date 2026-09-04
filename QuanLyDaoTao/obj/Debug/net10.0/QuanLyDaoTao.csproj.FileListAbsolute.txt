@@ -509,4 +509,16 @@
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/7gg8fhswv1-{0}-ztthsqifxs-ztthsqifxs.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/blv1siq8o4-{0}-a0fmcwrslx-a0fmcwrslx.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/5karkfqdon-{0}-ch4pavoczi-ch4pavoczi.gz
-/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/1azlsw13vq-{0}-r5hjbws89s-r5hjbws89s.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/1azlsw13vq-{0}-83qctzixzv-83qctzixzv.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/wvcpacbv73-{0}-v5ftwrmcat-v5ftwrmcat.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/v4l6r4ldtf-{0}-o9bvq2n77c-o9bvq2n77c.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/bin/Debug/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/bin/Debug/net10.0/QuanLyDaoTao.Utility.dll
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/bin/Debug/net10.0/QuanLyDaoTao.Utility.pdb
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/3vgikib77t-{0}-7jgj0h6ztv-7jgj0h6ztv.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/l58cz72qex-{0}-9fybil5ay4-9fybil5ay4.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/w0g9snibvl-{0}-bu4h62by38-bu4h62by38.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/quy4mfkusb-{0}-tj6f59wzgf-tj6f59wzgf.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/niyz67z9dl-{0}-hxy0fzdxcf-hxy0fzdxcf.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/7r1bn3viad-{0}-g66o54t9ro-g66o54t9ro.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/8ytnzmdmsx-{0}-w9pf1w7mat-w9pf1w7mat.gz

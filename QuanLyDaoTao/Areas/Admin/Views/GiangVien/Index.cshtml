@@ -1,0 +1,82 @@
+@{
+    ViewData["Title"] = "Quản lý giảng viên";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h4 class="mb-0">
+                            Quản lý giảng viên
+                        </h4>
+
+                        <a asp-area="Admin"
+                           asp-controller="GiangVien"
+                           asp-action="Upsert"
+                           class="btn btn-light">
+
+                            <i class="bi bi-plus-circle"></i>
+                            Thêm giảng viên
+
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <table id="tblData"
+                               class="table table-bordered table-striped table-hover">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>Mã GV</th>
+
+                                    <th>Họ tên</th>
+
+                                    <th>Giới tính</th>
+
+                                    <th>Email</th>
+
+                                    <th>Số điện thoại</th>
+
+                                    <th>Học vị</th>
+
+                                    <th>Khoa</th>
+
+                                    <th>Trạng thái</th>
+
+                                    <th>Thao tác</th>
+
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script src="~/js/giangvien.js"></script>
+}

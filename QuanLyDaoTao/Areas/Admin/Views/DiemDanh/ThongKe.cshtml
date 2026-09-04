@@ -1,0 +1,179 @@
+@model QuanLyDaoTao.Models.ViewModels.ThongKeChuyenCanVM
+
+@{
+    ViewData["Title"] = "Thống kê chuyên cần";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Thống kê chuyên cần
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Thông tin sinh viên -->
+
+            <div class="row mb-4">
+
+                <div class="col-md-6">
+
+                    <strong>Mã sinh viên:</strong>
+
+                    @Model.MaSinhVien
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <strong>Họ tên:</strong>
+
+                    @Model.HoTen
+
+                </div>
+
+            </div>
+
+
+            <!-- Thống kê -->
+
+            <div class="row text-center">
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="card border-primary">
+
+                        <div class="card-body">
+
+                            <h6>Tổng số buổi</h6>
+
+                            <h2>
+                                @Model.TongSoBuoi
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="card border-success">
+
+                        <div class="card-body">
+
+                            <h6>Có mặt</h6>
+
+                            <h2>
+                                @Model.SoBuoiCoMat
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="card border-danger">
+
+                        <div class="card-body">
+
+                            <h6>Vắng</h6>
+
+                            <h2>
+                                @Model.SoBuoiVang
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="card border-warning">
+
+                        <div class="card-body">
+
+                            <h6>Đi trễ</h6>
+
+                            <h2>
+                                @Model.SoBuoiDiTre
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="card border-info">
+
+                        <div class="card-body">
+
+                            <h6>Có phép</h6>
+
+                            <h2>
+                                @Model.SoBuoiCoPhep
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="card border-success">
+
+                        <div class="card-body">
+
+                            <h6>Tỷ lệ chuyên cần</h6>
+
+                            <h2>
+                                @Model.TyLeChuyenCan.ToString("0.##")%
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="mt-3">
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    Quay lại
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

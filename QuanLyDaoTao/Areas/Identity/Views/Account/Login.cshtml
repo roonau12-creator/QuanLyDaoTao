@@ -1,0 +1,145 @@
+@using QuanLyDaoTao.Models.ViewModels
+@model LoginVM
+<div class="container">
+
+    <div class="row justify-content-center mt-5">
+
+        <div class="col-md-5">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body p-4">
+
+                    <div class="text-center mb-4">
+
+                        <h2 class="fw-bold">
+                            Đăng nhập
+                        </h2>
+
+                        <p class="text-muted">
+                            Hệ thống quản lý sinh viên
+                        </p>
+
+                    </div>
+
+
+                    <form asp-action="Login"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="returnUrl"
+                               value="@ViewBag.ReturnUrl" />
+
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger mb-3">
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="MaSoSinhVien"
+                                   class="form-label">
+                                Mã số sinh viên
+                            </label>
+
+                            <input asp-for="MaSoSinhVien"
+                                   class="form-control"
+                                   placeholder="Nhập mã số sinh viên" />
+
+                            <span asp-validation-for="MaSoSinhVien"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- Password -->
+
+                        <div class="mb-3">
+
+                            <label asp-for="Password"
+                                   class="form-label">
+                                Mật khẩu
+                            </label>
+
+                            <input asp-for="Password"
+                                   class="form-control"
+                                   placeholder="Nhập mật khẩu" />
+
+                            <span asp-validation-for="Password"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Remember -->
+
+                        <div class="form-check mb-3">
+
+                            <input asp-for="RememberMe"
+                                   class="form-check-input" />
+
+                            <label asp-for="RememberMe"
+                                   class="form-check-label">
+                                Ghi nhớ đăng nhập
+                            </label>
+
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Role"
+                                   class="form-label">
+                                Vai trò
+                            </label>
+
+                            <select asp-for="Role"
+                                    class="form-select"
+                                    asp-items="Model.RoleList">
+                                <option value="" disabled selected>Chọn vai trò</option>
+                            </select>
+
+                            <span asp-validation-for="Role"
+                                  class="text-danger">
+                            </span>
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+
+                            Đăng nhập
+
+                        </button>
+
+
+                        <div class="text-center mt-3">
+
+                            <a asp-controller="Account"
+                               asp-action="Register">
+                                Chưa có tài khoản?
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync(
+            "_ValidationScriptsPartial");
+    }
+}

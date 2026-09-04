@@ -48,12 +48,7 @@ namespace QuanLyDaoTao.Business.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<(int LopCount, int MonHocCount)> GetRelatedCountsAsync(int khoaId)
-        {
-            var lopCount = await _context.lops.CountAsync(l => l.MaKhoa == khoaId);
-            var monHocCount = await _context.monHocs.CountAsync(m => m.MaKhoa == khoaId);
-            return (lopCount, monHocCount);
-        }
+       
 
     }
 }

@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Quản lý thông báo";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h4 class="mb-0">
+                    Quản lý thông báo
+                </h4>
+
+                <a asp-area="Admin"
+                   asp-controller="ThongBao"
+                   asp-action="Upsert"
+                   class="btn btn-light">
+
+                    <i class="bi bi-plus-circle"></i>
+                    Thêm thông báo
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table id="tblData"
+                       class="table table-bordered table-striped table-hover">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tiêu đề</th>
+                            <th>Loại thông báo</th>
+                            <th>Ngày đăng</th>
+                            <th>Ngày hết hạn</th>
+                            <th>Người đăng</th>
+                            <th>Thao tác</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <script src="~/js/thongbao.js"></script>
+
+}

@@ -1,0 +1,143 @@
+@model QuanLyDaoTao.Models.DangKyHocPhan
+
+@{
+    ViewData["Title"] = "Chi tiết đăng ký học phần";
+}
+
+<div class="container-fluid">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Chi tiết đăng ký học phần
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Mã đăng ký
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.MaDangKy"
+                           readonly />
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Mã sinh viên
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@(Model.SinhVien?.MaSoSinhVien ?? "N/A")"
+                           readonly />
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Họ tên sinh viên
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@(Model.SinhVien?.Hoten ?? "N/A")"
+                           readonly />
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Môn học
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@(Model.HocPhan?.MonHoc?.TenMonHoc ?? "N/A")"
+                           readonly />
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Học kỳ
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@(Model.HocKy?.TenHocKy ?? "N/A")"
+                           readonly />
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Ngày đăng ký
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.NgayDangKy.ToString("dd/MM/yyyy")"
+                           readonly />
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+                        Trạng thái
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="@Model.TrangThai"
+                           readonly />
+
+                </div>
+
+                <div class="col-md-12 mb-3">
+
+                    <label class="fw-bold">
+                        Ghi chú
+                    </label>
+
+                    <textarea class="form-control"
+                              rows="3"
+                              readonly>@Model.GhiChu</textarea>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    Quay lại
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
