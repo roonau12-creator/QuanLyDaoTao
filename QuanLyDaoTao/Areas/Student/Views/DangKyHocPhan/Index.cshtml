@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Đăng ký học phần";
+}
+
+<div class="student-card">
+    <div class="student-card-header d-flex justify-content-between align-items-center">
+        <h4><i class="bi bi-journal-plus me-2"></i>Học phần mở đăng ký</h4>
+        <a asp-area="Student" asp-controller="DangKyHocPhan" asp-action="DaDangKy" class="btn btn-light btn-sm">
+            <i class="bi bi-list-check me-1"></i>Học phần đã đăng ký
+        </a>
+    </div>
+    <div class="student-card-body">
+        <div class="table-responsive">
+            <table id="tblData" class="table table-bordered table-striped table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Mã học phần</th>
+                        <th>Môn học</th>
+                        <th>Tín chỉ</th>
+                        <th>Giảng viên</th>
+                        <th>Học kỳ</th>
+                        <th>Sĩ số</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/student-dangkyhocphan.js"></script>
+}

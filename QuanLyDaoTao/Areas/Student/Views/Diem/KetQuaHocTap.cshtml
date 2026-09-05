@@ -1,0 +1,133 @@
+@model IEnumerable<QuanLyDaoTao.Models.Diem>
+
+@{
+    ViewData["Title"] = "Kết quả học tập";
+    var sinhVien = ViewBag.SinhVien as QuanLyDaoTao.Models.SinhVien;
+}
+
+<div class="student-card mb-4">
+    <div class="student-card-header">
+        <h4><i class="bi bi-graph-up me-2"></i>Kết quả học tập</h4>
+    </div>
+    <div class="student-card-body">
+        @if (sinhVien != null)
+        {
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-muted small">Sinh viên</label>
+                    <div class="form-control bg-light">@sinhVien.Hoten</div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-muted small">Mã số</label>
+                    <div class="form-control bg-light">@sinhVien.MaSoSinhVien</div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-muted small">Lớp</label>
+                    <div class="form-control bg-light">@(sinhVien.Lop?.TenLop ?? "-")</div>
+                </div>
+            </div>
+        }
+
+        @{
+            var tongTinChi = Model.Where(d => d.DiemTongKet >= 5.0m).Sum(d => d.DangKyHocPhan?.HocPhan?.SoTinChi ?? 0);
+            var diemTB = Model.Where(d => d.DiemTongKet.HasValue).Any()
+                ? Model.Where(d => d.DiemTongKet.HasValue).Average(d => d.DiemTongKet!.Value)
+                : 0;
+            var xepLoai = diemTB >= 8.5m ? "Giỏi" : diemTB >= 7.0m ? "Khá" : diemTB >= 5.0m ? "Trung bình" : diemTB >= 4.0m ? "Yếu" : "Kém";
+        }
+
+        <div class="row g-3">
+            <div class="col-sm-4">
+                <div class="stat-card">
+                    <div class="stat-value text-primary">@tongTinChi</div>
+                    <div class="stat-label">Tín chỉ tích lũy</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="stat-card">
+                    <div class="stat-value">@diemTB.ToString("F2")</div>
+                    <div class="stat-label">Điểm trung bình tích lũy</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="stat-card">
+                    @{
+                        var badgeClass = xepLoai switch
+                        {
+                            "Giỏi" => "text-success",
+                            "Khá" => "text-primary",
+                            "Trung bình" => "text-warning",
+                            _ => "text-danger"
+                        };
+                    }
+                    <div class="stat-value @badgeClass">@xepLoai</div>
+                    <div class="stat-label">Xếp loại</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-table me-2"></i>Chi tiết kết quả</h4>
+    </div>
+    <div class="student-card-body">
+        <div class="table-responsive">
+            <table id="tblData" class="table table-bordered table-striped table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Môn học</th>
+                        <th>Học kỳ</th>
+                        <th>Tín chỉ</th>
+                        <th>Điểm tổng kết</th>
+                        <th>Kết quả</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DangKyHocPhan?.HocPhan?.MonHoc?.TenMonHoc</td>
+                            <td>@item.DangKyHocPhan?.HocKy?.TenHocKy</td>
+                            <td>@item.DangKyHocPhan?.HocPhan?.SoTinChi</td>
+                            <td><strong>@(item.DiemTongKet?.ToString("F2") ?? "-")</strong></td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.KetQua))
+                                {
+                                    var bc = item.KetQua switch
+                                    {
+                                        "Giỏi" => "bg-success",
+                                        "Khá" => "bg-primary",
+                                        "Trung bình" => "bg-warning text-dark",
+                                        "Yếu" => "bg-danger",
+                                        "Kém" => "bg-dark",
+                                        _ => "bg-secondary"
+                                    };
+                                    <span class="badge @bc">@item.KetQua</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#tblData").DataTable({
+                language: {
+                    emptyTable: "Chưa có kết quả học tập",
+                    zeroRecords: "Không tìm thấy",
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: { first: "Đầu", last: "Cuối", next: "Sau", previous: "Trước" }
+                }
+            });
+        });
+    </script>
+}

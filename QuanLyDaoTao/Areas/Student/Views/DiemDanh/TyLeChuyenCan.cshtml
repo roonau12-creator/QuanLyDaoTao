@@ -1,0 +1,94 @@
+@model QuanLyDaoTao.Models.ViewModels.ThongKeChuyenCanVM
+
+@{
+    ViewData["Title"] = "Tỷ lệ chuyên cần";
+}
+
+<div class="student-card mb-4">
+    <div class="student-card-header">
+        <h4><i class="bi bi-graph-up me-2"></i>Tỷ lệ chuyên cần</h4>
+    </div>
+    <div class="student-card-body">
+        @if (Model != null)
+        {
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <strong>Mã sinh viên:</strong> @Model.MaSinhVien
+                </div>
+                <div class="col-md-6">
+                    <strong>Họ tên:</strong> @Model.HoTen
+                </div>
+            </div>
+
+            <div class="row g-3 text-center">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:linear-gradient(135deg,#e8f1fe,#d4e4fc);color:var(--primary)">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <div class="stat-value">@Model.TongSoBuoi</div>
+                        <div class="stat-label">Tổng số buổi</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#059669">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="stat-value text-success">@Model.SoBuoiCoMat</div>
+                        <div class="stat-label">Có mặt</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:linear-gradient(135deg,#fee2e2,#fecaca);color:#dc2626">
+                            <i class="bi bi-x-circle"></i>
+                        </div>
+                        <div class="stat-value text-danger">@Model.SoBuoiVang</div>
+                        <div class="stat-label">Vắng</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);color:#d97706">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <div class="stat-value text-warning">@Model.SoBuoiDiTre</div>
+                        <div class="stat-label">Đi trễ</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);color:#0284c7">
+                            <i class="bi bi-envelope-check"></i>
+                        </div>
+                        <div class="stat-value text-info">@Model.SoBuoiCoPhep</div>
+                        <div class="stat-label">Có phép</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#059669">
+                            <i class="bi bi-percent"></i>
+                        </div>
+                        <div class="stat-value text-success">@Model.TyLeChuyenCan.ToString("0.##")%</div>
+                        <div class="stat-label">Tỷ lệ chuyên cần</div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-info-circle fs-1 text-muted"></i>
+                <p class="text-muted mt-3">Không có dữ liệu chuyên cần.</p>
+            </div>
+        }
+
+        <div class="mt-4">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Quay lại
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+@{
+    var sinhVien = ViewBag.SinhVien as QuanLyDaoTao.Models.SinhVien;
+    var soHocPhanDaDangKy = ViewBag.SoHocPhanDaDangKy as int? ?? 0;
+    var soThongBao = ViewBag.SoThongBao as int? ?? 0;
+    var thongBaoMoiNhat = ViewBag.ThongBaoMoiNhat as List<QuanLyDaoTao.Models.ThongBao>;
+}
+
+<div class="mb-4">
+    <h3 class="fw-bold mb-1">Xin chào, @(sinhVien?.Hoten ?? "Sinh viên")!</h3>
+    <p class="text-muted">Chào mừng bạn đến với cổng thông tin sinh viên.</p>
+</div>
+
+<!-- Stats -->
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#e8f1fe,#d4e4fc);color:var(--primary)">
+                <i class="bi bi-journal-plus"></i>
+            </div>
+            <div class="stat-value">@soHocPhanDaDangKy</div>
+            <div class="stat-label">Học phần đã đăng ký</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#059669">
+                <i class="bi bi-award"></i>
+            </div>
+            <div class="stat-value">@(sinhVien?.Lop?.TenLop ?? "-")</div>
+            <div class="stat-label">Lớp</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);color:#d97706">
+                <i class="bi bi-bell"></i>
+            </div>
+            <div class="stat-value">@soThongBao</div>
+            <div class="stat-label">Thông báo</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#7c3aed">
+                <i class="bi bi-building"></i>
+            </div>
+            <div class="stat-value">@(sinhVien?.Lop?.Khoa?.TenKhoa ?? "-")</div>
+            <div class="stat-label">Khoa</div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick links -->
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-lg-4">
+        <a asp-area="Student" asp-controller="DangKyHocPhan" asp-action="Index" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-journal-plus"></i></div>
+            <div>
+                <div class="ql-title">Đăng ký học phần</div>
+                <div class="ql-desc">Xem và đăng ký học phần mở</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <a asp-area="Student" asp-controller="ThoiKhoaBieu" asp-action="Index" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-calendar3"></i></div>
+            <div>
+                <div class="ql-title">Thời khóa biểu</div>
+                <div class="ql-desc">Xem lịch học cá nhân</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <a asp-area="Student" asp-controller="Diem" asp-action="Index" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-award"></i></div>
+            <div>
+                <div class="ql-title">Điểm số</div>
+                <div class="ql-desc">Tra cứu kết quả học tập</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <a asp-area="Student" asp-controller="DiemDanh" asp-action="Index" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-check2-circle"></i></div>
+            <div>
+                <div class="ql-title">Điểm danh</div>
+                <div class="ql-desc">Xem lịch sử chuyên cần</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <a asp-area="Student" asp-controller="ThongBao" asp-action="Index" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-bell"></i></div>
+            <div>
+                <div class="ql-title">Thông báo</div>
+                <div class="ql-desc">Xem thông báo mới nhất</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <a asp-area="Student" asp-controller="ThongTinCaNhan" asp-action="Index" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-person"></i></div>
+            <div>
+                <div class="ql-title">Thông tin cá nhân</div>
+                <div class="ql-desc">Xem thông tin tài khoản</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Latest notifications -->
+@if (thongBaoMoiNhat != null && thongBaoMoiNhat.Any())
+{
+    <div class="student-card">
+        <div class="student-card-header d-flex justify-content-between align-items-center">
+            <h4><i class="bi bi-bell me-2"></i>Thông báo mới nhất</h4>
+            <a asp-area="Student" asp-controller="ThongBao" asp-action="Index" class="btn btn-light btn-sm">Xem tất cả</a>
+        </div>
+        <div class="student-card-body">
+            @foreach (var tb in thongBaoMoiNhat)
+            {
+                <a asp-area="Student" asp-controller="ThongBao" asp-action="Details" asp-route-id="@tb.MaThongBao"
+                   class="d-flex align-items-start gap-3 p-3 rounded text-decoration-none mb-2"
+                   style="transition:background .2s"
+                   onmouseover="this.style.background='rgba(26,115,232,.03)'"
+                   onmouseout="this.style.background='transparent'">
+                    <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#e8f1fe,#d4e4fc);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <i class="bi bi-megaphone-fill"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight:600;font-size:.9rem;color:var(--text)">@tb.TieuDe</div>
+                        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">@tb.NgayDang.ToString("dd/MM/yyyy HH:mm")</div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+}

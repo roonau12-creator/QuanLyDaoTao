@@ -1,0 +1,118 @@
+@model IEnumerable<QuanLyDaoTao.Models.DangKyHocPhan>
+
+@{
+    ViewData["Title"] = "Học phần đã đăng ký";
+}
+
+<div class="student-card">
+    <div class="student-card-header d-flex justify-content-between align-items-center">
+        <h4><i class="bi bi-list-check me-2"></i>Học phần đã đăng ký</h4>
+        <a asp-area="Student" asp-controller="DangKyHocPhan" asp-action="Index" class="btn btn-light btn-sm">
+            <i class="bi bi-plus-circle me-1"></i>Đăng ký thêm
+        </a>
+    </div>
+    <div class="student-card-body">
+        <div class="table-responsive">
+            <table id="tblData" class="table table-bordered table-striped table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Mã đăng ký</th>
+                        <th>Mã học phần</th>
+                        <th>Tên học phần</th>
+                        <th>Môn học</th>
+                        <th>Tín chỉ</th>
+                        <th>Học kỳ</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaDangKy</td>
+                            <td>@item.MaHocPhan</td>
+                            <td>@item.HocPhan?.TenHocPhan</td>
+                            <td>@item.HocPhan?.MonHoc?.TenMonHoc</td>
+                            <td>@item.HocPhan?.SoTinChi</td>
+                            <td>@item.HocKy?.TenHocKy</td>
+                            <td>@item.NgayDangKy.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                @if (item.TrangThai == "Đã đăng ký")
+                                {
+                                    <span class="badge bg-success">Đã đăng ký</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">@item.TrangThai</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.MaDangKy" class="btn btn-info btn-sm text-white">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                @if (item.TrangThai == "Đã đăng ký")
+                                {
+                                    <button type="button"
+                                            onclick="HuyDangKy('@Url.Action("HuyDangKy", new { id = item.MaDangKy })')"
+                                            class="btn btn-danger btn-sm">
+                                        <i class="bi bi-x-circle"></i>
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#tblData").DataTable({
+                language: {
+                    emptyTable: "Chưa có học phần nào được đăng ký",
+                    zeroRecords: "Không tìm thấy",
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: { first: "Đầu", last: "Cuối", next: "Sau", previous: "Trước" }
+                }
+            });
+        });
+
+        function HuyDangKy(url) {
+            Swal.fire({
+                title: "Bạn có chắc muốn hủy?",
+                text: "Học phần sẽ được hủy khỏi danh sách đăng ký.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Hủy đăng ký",
+                cancelButtonText: "Không"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: "DELETE",
+                        success: function (data) {
+                            if (data.success) {
+                                Swal.fire({ title: "Thành công!", text: data.message, icon: "success" })
+                                    .then(() => location.reload());
+                            } else {
+                                Swal.fire({ title: "Lỗi!", text: data.message, icon: "error" });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({ title: "Lỗi!", text: "Có lỗi xảy ra khi hủy đăng ký.", icon: "error" });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

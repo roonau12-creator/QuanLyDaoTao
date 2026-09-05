@@ -1,0 +1,71 @@
+@model IEnumerable<QuanLyDaoTao.Models.LichHoc>
+
+@{
+    ViewData["Title"] = "Thời khóa biểu";
+}
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-calendar3 me-2"></i>Thời khóa biểu</h4>
+    </div>
+    <div class="student-card-body">
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                <p class="text-muted mt-3">Bạn chưa có lịch học nào.</p>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Thứ</th>
+                            <th>Môn học</th>
+                            <th>Lớp</th>
+                            <th>Tiết bắt đầu</th>
+                            <th>Số tiết</th>
+                            <th>Tiết học</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var thuText = item.Thu switch
+                            {
+                                2 => "Thứ 2",
+                                3 => "Thứ 3",
+                                4 => "Thứ 4",
+                                5 => "Thứ 5",
+                                6 => "Thứ 6",
+                                7 => "Thứ 7",
+                                8 => "Chủ nhật",
+                                _ => $"Thứ {item.Thu}"
+                            };
+                            <tr>
+                                <td><span class="badge bg-primary">@thuText</span></td>
+                                <td>@item.MonHoc?.TenMonHoc</td>
+                                <td>@item.Lop?.TenLop</td>
+                                <td>@item.TietBatDau</td>
+                                <td>@item.SoTiet</td>
+                                <td>@item.TietBatDau - @(item.TietBatDau + item.SoTiet - 1)</td>
+                                <td>@item.NgayBatDau.ToString("dd/MM/yyyy")</td>
+                                <td>@item.NgayKetThuc.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.MaLichHoc" class="btn btn-info btn-sm text-white">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

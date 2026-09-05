@@ -37,12 +37,8 @@
           <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="GiangVien">Giảng viên</a>
           <a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="DangKyHocPhan">Đăng ký học phần</a>
           <a class="nav-link" asp-action="DaDangKy" asp-area="Admin" asp-controller="DangKyHocPhan">Học phần đã đăng ký</a>
+          <partial name="_LoginPartial" />
         </nav>
-
-        <div class="d-none d-md-flex gap-2">
-          <a class="btn btn-outline-primary px-3" asp-area="Identity" asp-controller="Account" asp-action="Login">Đăng nhập</a>
-          <button class="btn btn-primary px-3">Đăng ký</button>
-        </div>
 
         <button class="btn btn-light d-md-none" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
           <i class="bi bi-list"></i>

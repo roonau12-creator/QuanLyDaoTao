@@ -506,7 +506,6 @@
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/f62pjqwvw2-{0}-4xqo6mkb1x-4xqo6mkb1x.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/bin/Debug/net10.0/QuanLyDaoTao
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/jpp3ftmuf3-{0}-d036xvumay-d036xvumay.gz
-/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/7gg8fhswv1-{0}-ztthsqifxs-ztthsqifxs.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/blv1siq8o4-{0}-a0fmcwrslx-a0fmcwrslx.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/5karkfqdon-{0}-ch4pavoczi-ch4pavoczi.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/1azlsw13vq-{0}-83qctzixzv-83qctzixzv.gz
@@ -522,3 +521,6 @@
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/niyz67z9dl-{0}-hxy0fzdxcf-hxy0fzdxcf.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/7r1bn3viad-{0}-g66o54t9ro-g66o54t9ro.gz
 /home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/8ytnzmdmsx-{0}-w9pf1w7mat-w9pf1w7mat.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/afsf3iatt6-{0}-5eewveif6h-5eewveif6h.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/24o15eo7mo-{0}-cim2un6ha2-cim2un6ha2.gz
+/home/roonau/Documents/QuanLyDaoTao/QuanLyDaoTao/obj/Debug/net10.0/compressed/7gg8fhswv1-{0}-amronhkqli-amronhkqli.gz

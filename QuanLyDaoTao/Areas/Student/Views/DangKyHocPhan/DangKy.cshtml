@@ -1,0 +1,55 @@
+@model QuanLyDaoTao.Models.ViewModels.DangKyHocPhanVM
+
+@{
+    ViewData["Title"] = "Đăng ký học phần";
+}
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-journal-plus me-2"></i>Xác nhận đăng ký học phần</h4>
+    </div>
+    <div class="student-card-body">
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Mã học phần</label>
+                <div class="form-control bg-light">@Model.MaHocPhan</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Tên học phần</label>
+                <div class="form-control bg-light">@Model.TenHocPhan</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Môn học</label>
+                <div class="form-control bg-light">@Model.TenMonHoc</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Số tín chỉ</label>
+                <div class="form-control bg-light">@Model.SoTinChi</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Học kỳ</label>
+                <div class="form-control bg-light">@Model.TenHocKy</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Sĩ số</label>
+                <div class="form-control bg-light">@Model.SoLuongDaDangKy / @Model.SiSoToiDa</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Số chỗ còn lại</label>
+                <div class="form-control bg-light fw-bold @(Model.SoChoConLai <= 0 ? "text-danger" : "text-success")">@Model.SoChoConLai</div>
+            </div>
+        </div>
+
+        <hr />
+
+        <form asp-action="DangKy" method="post">
+            <input type="hidden" asp-for="MaHocPhan" />
+            <button type="submit" class="btn btn-primary" @(Model.SoChoConLai <= 0 ? "disabled" : "")>
+                <i class="bi bi-check-circle me-1"></i>Xác nhận đăng ký
+            </button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">
+                <i class="bi bi-arrow-left me-1"></i>Quay lại
+            </a>
+        </form>
+    </div>
+</div>

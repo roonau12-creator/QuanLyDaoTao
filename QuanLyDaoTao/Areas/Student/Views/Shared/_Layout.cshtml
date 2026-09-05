@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sinh viên</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.datatables.net/v/dt/dt-3.0.2/datatables.min.css" rel="stylesheet" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/student.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="student-layout">
+        <!-- Sidebar -->
+        <nav class="student-sidebar" id="studentSidebar">
+            <div class="sidebar-header">
+                <a class="brand" asp-area="Student" asp-controller="Home" asp-action="Index">
+                    <span class="brand-badge"><i class="bi bi-mortarboard-fill"></i></span>
+                    <span>
+                        <span class="brand-title d-block">QL ĐÀO TẠO</span>
+                        <span class="brand-sub d-block">Cổng sinh viên</span>
+                    </span>
+                </a>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li>
+                    <a asp-area="Student" asp-controller="Home" asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")">
+                        <i class="bi bi-house-door"></i>
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Student" asp-controller="ThongTinCaNhan" asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "ThongTinCaNhan" ? "active" : "")">
+                        <i class="bi bi-person"></i>
+                        <span>Thông tin cá nhân</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Student" asp-controller="DangKyHocPhan" asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "DangKyHocPhan" ? "active" : "")">
+                        <i class="bi bi-journal-plus"></i>
+                        <span>Đăng ký học phần</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Student" asp-controller="ThoiKhoaBieu" asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "ThoiKhoaBieu" ? "active" : "")">
+                        <i class="bi bi-calendar3"></i>
+                        <span>Thời khóa biểu</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Student" asp-controller="Diem" asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Diem" ? "active" : "")">
+                        <i class="bi bi-award"></i>
+                        <span>Điểm</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Student" asp-controller="DiemDanh" asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "DiemDanh" ? "active" : "")">
+                        <i class="bi bi-check2-circle"></i>
+                        <span>Điểm danh</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Student" asp-controller="ThongBao" asp-action="Index"
+                       class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "ThongBao" ? "active" : "")">
+                        <i class="bi bi-bell"></i>
+                        <span>Thông báo</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a asp-area="Student" asp-controller="TaiKhoan" asp-action="Index"
+                   class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "TaiKhoan" ? "active" : "")">
+                    <i class="bi bi-gear"></i>
+                    <span>Tài khoản</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <div class="student-main">
+            <!-- Top bar -->
+            <header class="student-topbar">
+                <button class="btn btn-link sidebar-toggle d-md-none" onclick="toggleSidebar()">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div class="d-flex align-items-center gap-3 ms-auto">
+                    <span class="text-muted small">
+                        <i class="bi bi-person-circle me-1"></i>
+                        @User.Identity?.Name
+                    </span>
+                </div>
+            </header>
+
+            <!-- Page content -->
+            <div class="student-content">
+                <partial name="_Notification" />
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-3.0.2/datatables.min.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('studentSidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('show');
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

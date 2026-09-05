@@ -1,27 +1,66 @@
 
-
-  <!-- Header -->
-
   <!-- Hero -->
   <section class="hero" id="home">
-    <div class="container">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    <div class="container position-relative">
       <div class="row align-items-center g-5">
         <div class="col-lg-6">
-          <h1>CỔNG THÔNG TIN QUẢN LÝ ĐÀO TẠO</h1>
-          <p class="sub mt-3">Dành cho sinh viên</p>
+          <span class="hero-badge"><i class="bi bi-stars"></i> Hệ thống quản lý đào tạo hiện đại</span>
+          <h1 class="mt-3">CỔNG THÔNG TIN<br><span class="text-gradient">QUẢN LÝ ĐÀO TẠO</span></h1>
           <p class="desc mt-4">
             Hệ thống cung cấp các dịch vụ trực tuyến giúp sinh viên tra cứu thông
             tin học tập, đăng ký học phần, xem kết quả và quản lý quá trình học
             tập một cách nhanh chóng, thuận tiện.
           </p>
           <div class="d-flex flex-wrap gap-3 mt-4">
-            <a class="btn btn-hero-outline px-4 py-2" asp-area="Identity" asp-controller="Account" asp-action="Login">Đăng nhập</a>
-            <button class="btn btn-hero-solid px-4 py-2" asp-area="Identity" asp-controller="Account" asp-action="Register">Đăng ký tài khoản</button>
+            <a class="btn btn-hero-solid px-4 py-2" asp-area="Identity" asp-controller="Account" asp-action="Login">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+            </a>
+            <a class="btn btn-hero-outline px-4 py-2" asp-area="Identity" asp-controller="Account" asp-action="Register">
+              <i class="bi bi-person-plus me-2"></i>Đăng ký tài khoản
+            </a>
+          </div>
+          <div class="hero-stats mt-5">
+            <div class="hero-stat">
+              <span class="hero-stat-num">5,000+</span>
+              <span class="hero-stat-label">Sinh viên</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">200+</span>
+              <span class="hero-stat-label">Giảng viên</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">150+</span>
+              <span class="hero-stat-label">Môn học</span>
+            </div>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="hero-art">
-            <img src="https://images.unsplash.com/photo-1523050854058-8389014554de?auto=format&fit=crop&w=1000&q=80" alt="Sinh viên" />
+            <div class="hero-art-inner">
+              <div class="hero-art-circle c1"></div>
+              <div class="hero-art-circle c2"></div>
+              <div class="hero-art-icon"><i class="bi bi-mortarboard-fill"></i></div>
+              <div class="hero-art-text">
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Xếp lịch tự động</span>
+              </div>
+              <div class="hero-art-text t2">
+                <i class="bi bi-graph-up-arrow"></i>
+                <span>Thống kê điểm số</span>
+              </div>
+              <div class="hero-art-text t3">
+                <i class="bi bi-shield-lock-fill"></i>
+                <span>Bảo mật an toàn</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -34,62 +73,83 @@
       <div class="row g-3">
         <div class="col-sm-6 col-lg">
           <div class="qa-card">
-            <div class="d-flex align-items-start gap-3">
-              <span class="qa-icon"><i class="bi bi-bell-fill"></i></span>
-              <div>
-                <p class="qa-title">Thông báo</p>
-                <p class="qa-desc">Cập nhật các thông báo mới nhất từ phòng đào tạo.</p>
-                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
+            <div class="qa-icon"><i class="bi bi-bell-fill"></i></div>
+            <p class="qa-title">Thông báo</p>
+            <p class="qa-desc">Cập nhật các thông báo mới nhất từ phòng đào tạo.</p>
+            <a class="qa-link" href="#notifications">Xem ngay <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         <div class="col-sm-6 col-lg">
           <div class="qa-card">
-            <div class="d-flex align-items-start gap-3">
-              <span class="qa-icon"><i class="bi bi-calendar3"></i></span>
-              <div>
-                <p class="qa-title">Thời khóa biểu</p>
-                <p class="qa-desc">Xem thời khóa biểu cá nhân theo tuần.</p>
-                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
+            <div class="qa-icon"><i class="bi bi-calendar3"></i></div>
+            <p class="qa-title">Thời khóa biểu</p>
+            <p class="qa-desc">Xem thời khóa biểu cá nhân theo tuần.</p>
+            <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         <div class="col-sm-6 col-lg">
           <div class="qa-card">
-            <div class="d-flex align-items-start gap-3">
-              <span class="qa-icon"><i class="bi bi-award"></i></span>
-              <div>
-                <p class="qa-title">Kết quả học tập</p>
-                <p class="qa-desc">Tra cứu kết quả học tập, điểm số từng học phần.</p>
-                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
+            <div class="qa-icon"><i class="bi bi-award"></i></div>
+            <p class="qa-title">Kết quả học tập</p>
+            <p class="qa-desc">Tra cứu kết quả học tập, điểm số từng học phần.</p>
+            <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         <div class="col-sm-6 col-lg">
           <div class="qa-card">
-            <div class="d-flex align-items-start gap-3">
-              <span class="qa-icon"><i class="bi bi-book"></i></span>
-              <div>
-                <p class="qa-title">Chương trình đào tạo</p>
-                <p class="qa-desc">Xem thông tin chương trình đào tạo của khóa học.</p>
-                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
+            <div class="qa-icon"><i class="bi bi-book"></i></div>
+            <p class="qa-title">Chương trình đào tạo</p>
+            <p class="qa-desc">Xem thông tin chương trình đào tạo của khóa học.</p>
+            <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         <div class="col-sm-6 col-lg">
           <div class="qa-card">
-            <div class="d-flex align-items-start gap-3">
-              <span class="qa-icon"><i class="bi bi-credit-card-2-front"></i></span>
-              <div>
-                <p class="qa-title">Học phí</p>
-                <p class="qa-desc">Tra cứu thông tin học phí và lịch sử thanh toán.</p>
-                <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
+            <div class="qa-icon"><i class="bi bi-credit-card-2-front"></i></div>
+            <p class="qa-title">Học phí</p>
+            <p class="qa-desc">Tra cứu thông tin học phí và lịch sử thanh toán.</p>
+            <a class="qa-link" href="#">Xem ngay <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features section -->
+  <section class="features-section py-5" id="about">
+    <div class="container">
+      <div class="section-header text-center mb-5">
+        <span class="section-tag">Tính năng nổi bật</span>
+        <h2 class="section-title">Tại sao chọn hệ thống của chúng tôi?</h2>
+        <p class="section-desc">Hệ thống quản lý đào tạo giúp việc học tập trở nên dễ dàng hơn bao giờ hết</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-speedometer2"></i></div>
+            <h4>Nhanh chóng</h4>
+            <p>Truy cập thông tin chỉ trong vài giây với giao diện trực quan.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+            <h4>Bảo mật</h4>
+            <p>Dữ liệu được mã hóa và bảo vệ an toàn tuyệt đối.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-phone"></i></div>
+            <h4>Đa nền tảng</h4>
+            <p>Sử dụng mượt mà trên máy tính, điện thoại và máy tính bảng.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-headset"></i></div>
+            <h4>Hỗ trợ 24/7</h4>
+            <p>Đội ngũ hỗ trợ luôn sẵn sàng giải đáp mọi thắc mắc.</p>
           </div>
         </div>
       </div>
@@ -102,39 +162,44 @@
       <div class="row g-4">
         <div class="col-lg-6" id="notifications">
           <div class="panel">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h2 class="panel-title">THÔNG BÁO MỚI NHẤT</h2>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="panel-title"><i class="bi bi-megaphone-fill text-primary me-2"></i>THÔNG BÁO MỚI NHẤT</h2>
               <span class="badge-new">Mới</span>
             </div>
             <a class="notif-item" href="#">
               <span class="notif-icon"><i class="bi bi-megaphone-fill"></i></span>
-              <div>
+              <div class="notif-content">
                 <p class="notif-title">Thông báo đăng ký học phần học kỳ 2 năm học 2024-2025</p>
-                <p class="notif-date">15/05/2025</p>
+                <p class="notif-date"><i class="bi bi-clock me-1"></i>15/05/2025</p>
               </div>
+              <i class="bi bi-chevron-right notif-arrow"></i>
             </a>
             <a class="notif-item" href="#">
               <span class="notif-icon"><i class="bi bi-file-earmark-text-fill"></i></span>
-              <div>
+              <div class="notif-content">
                 <p class="notif-title">Thông báo nộp học phí học kỳ 2 năm học 2024-2025</p>
-                <p class="notif-date">12/05/2025</p>
+                <p class="notif-date"><i class="bi bi-clock me-1"></i>12/05/2025</p>
               </div>
+              <i class="bi bi-chevron-right notif-arrow"></i>
             </a>
             <a class="notif-item" href="#">
               <span class="notif-icon"><i class="bi bi-calendar-event-fill"></i></span>
-              <div>
+              <div class="notif-content">
                 <p class="notif-title">Thông báo nghỉ lễ 30/4 và 1/5</p>
-                <p class="notif-date">25/04/2025</p>
+                <p class="notif-date"><i class="bi bi-clock me-1"></i>25/04/2025</p>
               </div>
+              <i class="bi bi-chevron-right notif-arrow"></i>
             </a>
-            <a class="more-link" href="#">Xem tất cả thông báo <i class="bi bi-arrow-right"></i></a>
+            <div class="panel-footer-link">
+              <a class="more-link" href="#">Xem tất cả thông báo <i class="bi bi-arrow-right"></i></a>
+            </div>
           </div>
         </div>
 
         <div class="col-lg-6" id="guides">
           <div class="panel">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h2 class="panel-title">HƯỚNG DẪN SỬ DỤNG</h2>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h2 class="panel-title"><i class="bi bi-question-circle-fill text-primary me-2"></i>HƯỚNG DẪN SỬ DỤNG</h2>
             </div>
 
             <div class="faq-item open">
@@ -202,8 +267,27 @@
               </div>
             </div>
 
-            <a class="more-link" href="#">Xem tất cả hướng dẫn <i class="bi bi-arrow-right"></i></a>
+            <div class="panel-footer-link">
+              <a class="more-link" href="#">Xem tất cả hướng dẫn <i class="bi bi-arrow-right"></i></a>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-content">
+          <h2>Bắt đầu sử dụng ngay hôm nay</h2>
+          <p>Đăng ký tài khoản để trải nghiệm hệ thống quản lý đào tạo thông minh và hiện đại.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-cta-primary" asp-area="Identity" asp-controller="Account" asp-action="Login">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập ngay
+          </a>
         </div>
       </div>
     </div>
@@ -221,10 +305,15 @@
               <span class="brand-sub d-block" style="color:rgba(255,255,255,.6)">Cổng thông tin sinh viên</span>
             </span>
           </div>
-          <p style="font-size:.88rem;line-height:1.6;max-width:420px">
+          <p class="footer-desc">
             Hệ thống quản lý đào tạo cung cấp các dịch vụ trực tuyến cho sinh viên,
             hỗ trợ tra cứu thông tin và thực hiện các thủ tục học tập nhanh chóng.
           </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="footer-social"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="footer-social"><i class="bi bi-envelope-fill"></i></a>
+          </div>
         </div>
         <div class="col-md-8">
           <div class="row g-4">
@@ -261,7 +350,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      © 2025 Cổng thông tin quản lý đào tạo. All rights reserved.
+      &copy; 2025 Cổng thông tin quản lý đào tạo. All rights reserved.
     </div>
   </footer>
 
@@ -272,4 +361,18 @@
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if(!isOpen) item.classList.add('open');
     }
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.qa-card, .feature-card, .panel, .cta-card').forEach(el => {
+      el.classList.add('animate-on-scroll');
+      observer.observe(el);
+    });
   </script>

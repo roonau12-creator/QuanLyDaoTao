@@ -1,0 +1,53 @@
+@model IEnumerable<QuanLyDaoTao.Models.ThongBao>
+
+@{
+    ViewData["Title"] = "Thông báo";
+}
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-bell me-2"></i>Danh sách thông báo</h4>
+    </div>
+    <div class="student-card-body">
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-bell-slash fs-1 text-muted"></i>
+                <p class="text-muted mt-3">Chưa có thông báo nào.</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <a asp-action="Details" asp-route-id="@item.MaThongBao"
+                   class="d-flex align-items-start gap-3 p-3 rounded text-decoration-none mb-2"
+                   style="transition:background .2s;border:1px solid transparent"
+                   onmouseover="this.style.background='rgba(26,115,232,.03)';this.style.borderColor='var(--border)'"
+                   onmouseout="this.style.background='transparent';this.style.borderColor='transparent'">
+                    <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#e8f1fe,#d4e4fc);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <i class="bi bi-megaphone-fill"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div style="font-weight:600;font-size:.95rem;color:var(--text)">@item.TieuDe</div>
+                            <span class="badge bg-secondary ms-2" style="white-space:nowrap">@item.LoaiNoiDung</span>
+                        </div>
+                        <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem">
+                            <i class="bi bi-person me-1"></i>@item.NguoiDang
+                            <span class="mx-2">|</span>
+                            <i class="bi bi-clock me-1"></i>@item.NgayDang.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                        @if (item.NgayHetHan.HasValue)
+                        {
+                            <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">
+                                <i class="bi bi-calendar-x me-1"></i>Hết hạn: @item.NgayHetHan.Value.ToString("dd/MM/yyyy")
+                            </div>
+                        }
+                    </div>
+                </a>
+                <hr class="my-1" style="border-color:var(--border);opacity:.5" />
+            }
+        }
+    </div>
+</div>

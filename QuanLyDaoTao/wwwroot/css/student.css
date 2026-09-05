@@ -1,0 +1,310 @@
+/* Student Area CSS */
+.student-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.student-sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #0d1b3e 0%, #1a2f5c 100%);
+    color: rgba(255,255,255,.85);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1030;
+    overflow-y: auto;
+    transition: transform .3s ease;
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.sidebar-header .brand {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar-header .brand-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.sidebar-header .brand-title {
+    font-weight: 700;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #fff, rgba(255,255,255,.9));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.sidebar-header .brand-sub {
+    font-size: .72rem;
+    color: rgba(255,255,255,.6);
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    flex: 1;
+}
+
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .75rem 1.5rem;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 500;
+    transition: all .2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-nav li a:hover {
+    color: #fff;
+    background: rgba(255,255,255,.08);
+}
+
+.sidebar-nav li a.active {
+    color: #fff;
+    background: rgba(255,255,255,.12);
+    border-left-color: var(--primary);
+}
+
+.sidebar-nav li a i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.sidebar-footer {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.sidebar-footer a {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .75rem 1.5rem;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 500;
+    transition: all .2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-footer a:hover {
+    color: #fff;
+    background: rgba(255,255,255,.08);
+}
+
+.sidebar-footer a.active {
+    color: #fff;
+    background: rgba(255,255,255,.12);
+    border-left-color: var(--primary);
+}
+
+.sidebar-footer a i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Main content */
+.student-main {
+    flex: 1;
+    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.student-topbar {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: .75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.student-content {
+    flex: 1;
+    padding: 1.5rem;
+    background: var(--bg);
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 1025;
+}
+
+.sidebar-overlay.show {
+    display: block;
+}
+
+/* Mobile responsive */
+@media (max-width: 767.98px) {
+    .student-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .student-sidebar.open {
+        transform: translateX(0);
+    }
+
+    .student-main {
+        margin-left: 0;
+    }
+}
+
+/* Student page card styles */
+.student-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.02);
+    transition: all .3s;
+}
+
+.student-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+.student-card-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    padding: 1rem 1.25rem;
+}
+
+.student-card-header h4 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.student-card-body {
+    padding: 1.25rem;
+}
+
+/* Stat cards */
+.stat-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all .3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+.stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin: 0 auto .75rem;
+}
+
+.stat-card .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.stat-card .stat-label {
+    font-size: .8rem;
+    color: var(--muted);
+    margin-top: .25rem;
+}
+
+/* Quick links on dashboard */
+.quick-link-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all .3s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    color: var(--primary);
+    border-color: var(--primary-light);
+}
+
+.quick-link-card .ql-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #e8f1fe 0%, #d4e4fc 100%);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex: 0 0 auto;
+    transition: all .3s;
+}
+
+.quick-link-card:hover .ql-icon {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.quick-link-card .ql-title {
+    font-weight: 700;
+    font-size: .95rem;
+}
+
+.quick-link-card .ql-desc {
+    font-size: .8rem;
+    color: var(--muted);
+    margin: .2rem 0 0;
+}

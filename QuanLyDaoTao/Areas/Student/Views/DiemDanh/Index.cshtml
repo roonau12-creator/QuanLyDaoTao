@@ -1,0 +1,100 @@
+@model IEnumerable<QuanLyDaoTao.Models.DiemDanh>
+
+@{
+    ViewData["Title"] = "Lịch sử điểm danh";
+}
+
+<div class="student-card mb-4">
+    <div class="student-card-header d-flex justify-content-between align-items-center">
+        <h4><i class="bi bi-check2-circle me-2"></i>Lịch sử điểm danh</h4>
+        <a asp-area="Student" asp-controller="DiemDanh" asp-action="TyLeChuyenCan" class="btn btn-light btn-sm">
+            <i class="bi bi-graph-up me-1"></i>Tỷ lệ chuyên cần
+        </a>
+    </div>
+    <div class="student-card-body">
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-check2-circle fs-1 text-muted"></i>
+                <p class="text-muted mt-3">Chưa có dữ liệu điểm danh.</p>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table id="tblData" class="table table-bordered table-striped table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Môn học</th>
+                            <th>Thứ</th>
+                            <th>Tiết học</th>
+                            <th>Trạng thái</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int stt = 1; }
+                        @foreach (var item in Model)
+                        {
+                            var thuText = item.LichHoc?.Thu switch
+                            {
+                                2 => "Thứ 2",
+                                3 => "Thứ 3",
+                                4 => "Thứ 4",
+                                5 => "Thứ 5",
+                                6 => "Thứ 6",
+                                7 => "Thứ 7",
+                                8 => "Chủ nhật",
+                                _ => $"Thứ {item.LichHoc?.Thu}"
+                            };
+                            <tr>
+                                <td>@stt</td>
+                                <td>@item.LichHoc?.MonHoc?.TenMonHoc</td>
+                                <td><span class="badge bg-primary">@thuText</span></td>
+                                <td>@item.LichHoc?.TietBatDau - @(item.LichHoc != null ? item.LichHoc.TietBatDau + item.LichHoc.SoTiet - 1 : 0)</td>
+                                <td>
+                                    @if (item.TrangThai == "Có mặt")
+                                    {
+                                        <span class="badge bg-success">Có mặt</span>
+                                    }
+                                    else if (item.TrangThai == "Vắng")
+                                    {
+                                        <span class="badge bg-danger">Vắng</span>
+                                    }
+                                    else if (item.TrangThai == "Đi trễ")
+                                    {
+                                        <span class="badge bg-warning text-dark">Đi trễ</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-info">@item.TrangThai</span>
+                                    }
+                                </td>
+                                <td>@item.GhiChu</td>
+                            </tr>
+                            stt++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#tblData").DataTable({
+                language: {
+                    emptyTable: "Chưa có dữ liệu điểm danh",
+                    zeroRecords: "Không tìm thấy",
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: { first: "Đầu", last: "Cuối", next: "Sau", previous: "Trước" }
+                }
+            });
+        });
+    </script>
+}

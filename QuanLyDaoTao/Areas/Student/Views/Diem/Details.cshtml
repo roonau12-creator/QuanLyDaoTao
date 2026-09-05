@@ -1,0 +1,71 @@
+@model QuanLyDaoTao.Models.Diem
+
+@{
+    ViewData["Title"] = "Chi tiết điểm";
+}
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-award me-2"></i>Chi tiết điểm</h4>
+    </div>
+    <div class="student-card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Môn học</label>
+                <div class="form-control bg-light">@Model.DangKyHocPhan?.HocPhan?.MonHoc?.TenMonHoc</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Học kỳ</label>
+                <div class="form-control bg-light">@Model.DangKyHocPhan?.HocKy?.TenHocKy</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Điểm chuyên cần</label>
+                <div class="form-control bg-light">@(Model.DiemChuyenCan?.ToString("F2") ?? "Chưa có")</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Điểm nhận xét</label>
+                <div class="form-control bg-light">@(Model.DiemNhanXet?.ToString("F2") ?? "Chưa có")</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Điểm giữa kỳ</label>
+                <div class="form-control bg-light">@(Model.DiemGiuaKy?.ToString("F2") ?? "Chưa có")</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Điểm cuối kỳ</label>
+                <div class="form-control bg-light">@(Model.DiemCuoiKy?.ToString("F2") ?? "Chưa có")</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Điểm tổng kết</label>
+                <div class="form-control bg-light fw-bold fs-5">@(Model.DiemTongKet?.ToString("F2") ?? "Chưa có")</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Kết quả</label>
+                <div class="form-control bg-light">
+                    @if (!string.IsNullOrEmpty(Model.KetQua))
+                    {
+                        var badgeClass = Model.KetQua switch
+                        {
+                            "Giỏi" => "bg-success",
+                            "Khá" => "bg-primary",
+                            "Trung bình" => "bg-warning text-dark",
+                            "Yếu" => "bg-danger",
+                            "Kém" => "bg-dark",
+                            _ => "bg-secondary"
+                        };
+                        <span class="badge @badgeClass fs-6">@Model.KetQua</span>
+                    }
+                    else
+                    {
+                        <span>Chưa có</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Quay lại
+            </a>
+        </div>
+    </div>
+</div>

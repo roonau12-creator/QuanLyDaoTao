@@ -1,0 +1,64 @@
+@model QuanLyDaoTao.Models.LichHoc
+
+@{
+    ViewData["Title"] = "Chi tiết lịch học";
+
+    var thuText = Model.Thu switch
+    {
+        2 => "Thứ 2",
+        3 => "Thứ 3",
+        4 => "Thứ 4",
+        5 => "Thứ 5",
+        6 => "Thứ 6",
+        7 => "Thứ 7",
+        8 => "Chủ nhật",
+        _ => $"Thứ {Model.Thu}"
+    };
+}
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-calendar-event me-2"></i>Chi tiết lịch học</h4>
+    </div>
+    <div class="student-card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Thứ</label>
+                <div class="form-control bg-light"><span class="badge bg-primary">@thuText</span></div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Môn học</label>
+                <div class="form-control bg-light">@Model.MonHoc?.TenMonHoc</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Lớp</label>
+                <div class="form-control bg-light">@Model.Lop?.TenLop</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Tiết học</label>
+                <div class="form-control bg-light">@Model.TietBatDau - @(Model.TietBatDau + Model.SoTiet - 1) (@Model.SoTiet tiết)</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Ngày bắt đầu</label>
+                <div class="form-control bg-light">@Model.NgayBatDau.ToString("dd/MM/yyyy")</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Ngày kết thúc</label>
+                <div class="form-control bg-light">@Model.NgayKetThuc.ToString("dd/MM/yyyy")</div>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.GhiChu))
+            {
+                <div class="col-12">
+                    <label class="form-label fw-bold text-muted small">Ghi chú</label>
+                    <div class="form-control bg-light">@Model.GhiChu</div>
+                </div>
+            }
+        </div>
+
+        <div class="mt-4">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Quay lại
+            </a>
+        </div>
+    </div>
+</div>

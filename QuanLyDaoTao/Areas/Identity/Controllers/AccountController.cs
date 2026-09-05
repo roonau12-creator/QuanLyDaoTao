@@ -67,10 +67,18 @@ namespace QuanLyDaoTao.Areas.Identity.Controllers
                         {
                             return Redirect(returnUrl);
                         }
-                        else
+
+                        if (await _userManager.IsInRoleAsync(user, SD.Role_Student))
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home", new { area = "Student" });
                         }
+
+                        if (await _userManager.IsInRoleAsync(user, SD.Role_Admin))
+                        {
+                            return RedirectToAction("Index", "Khoa", new { area = "Admin" });
+                        }
+
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 ModelState.AddModelError(string.Empty, "Mã số sinh viên hoặc mật khẩu không đúng.");

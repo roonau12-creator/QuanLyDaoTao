@@ -5,6 +5,7 @@ using QuanLyDaoTao.Business.Services;
 using QuanLyDaoTao.Business.Services.IServices;
 using QuanLyDaoTao.DataAccess.Data;
 using QuanLyDaoTao.Models;
+using QuanLyDaoTao;
 using ApplicationUser = QuanLyDaoTao.Models.ApplicationUser;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +39,7 @@ builder.Services.AddScoped<IHocPhongService, PhongHocService>();
 builder.Services.AddScoped<IThongBaoService, ThongBaoService>();
 builder.Services.AddScoped<IDiemDanhService, DiemDanhService>();
 builder.Services.AddScoped<IDiemService, DiemService>();
+builder.Services.AddScoped<ILichHocService, LichHocService>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = $"/Identity/Account/Login";
@@ -47,6 +49,12 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 });
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    await ApplicationDbInitializer.InitializeAsync(scope.ServiceProvider);
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

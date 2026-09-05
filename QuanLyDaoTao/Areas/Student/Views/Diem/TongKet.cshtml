@@ -1,0 +1,130 @@
+@model IEnumerable<QuanLyDaoTao.Models.Diem>
+
+@{
+    ViewData["Title"] = "Điểm tổng kết";
+}
+
+<div class="student-card mb-4">
+    <div class="student-card-header">
+        <h4><i class="bi bi-calculator me-2"></i>Điểm tổng kết</h4>
+    </div>
+    <div class="student-card-body">
+        @{
+            var tongTinChi = ViewBag.TongTinChi as int? ?? 0;
+            var diemTB = ViewBag.DiemTrungBinh as decimal? ?? 0;
+            var soMonRot = ViewBag.SoMonRot as int? ?? 0;
+            var soMonDat = ViewBag.SoMonDat as int? ?? 0;
+        }
+
+        <div class="row g-3 mb-4">
+            <div class="col-sm-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#059669">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <div class="stat-value">@soMonDat</div>
+                    <div class="stat-label">Môn đạt</div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#fee2e2,#fecaca);color:#dc2626">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                    <div class="stat-value">@soMonRot</div>
+                    <div class="stat-label">Môn trượt</div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#e8f1fe,#d4e4fc);color:var(--primary)">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <div class="stat-value">@tongTinChi</div>
+                    <div class="stat-label">Tín chỉ tích lũy</div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);color:#d97706">
+                        <i class="bi bi-star"></i>
+                    </div>
+                    <div class="stat-value">@diemTB.ToString("F2")</div>
+                    <div class="stat-label">Điểm trung bình</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-table me-2"></i>Chi tiết điểm từng môn</h4>
+    </div>
+    <div class="student-card-body">
+        <div class="table-responsive">
+            <table id="tblData" class="table table-bordered table-striped table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Môn học</th>
+                        <th>Học kỳ</th>
+                        <th>Tín chỉ</th>
+                        <th>Chuyên cần</th>
+                        <th>Nhận xét</th>
+                        <th>Giữa kỳ</th>
+                        <th>Cuối kỳ</th>
+                        <th>Tổng kết</th>
+                        <th>Kết quả</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DangKyHocPhan?.HocPhan?.MonHoc?.TenMonHoc</td>
+                            <td>@item.DangKyHocPhan?.HocKy?.TenHocKy</td>
+                            <td>@item.DangKyHocPhan?.HocPhan?.SoTinChi</td>
+                            <td>@(item.DiemChuyenCan?.ToString("F2") ?? "-")</td>
+                            <td>@(item.DiemNhanXet?.ToString("F2") ?? "-")</td>
+                            <td>@(item.DiemGiuaKy?.ToString("F2") ?? "-")</td>
+                            <td>@(item.DiemCuoiKy?.ToString("F2") ?? "-")</td>
+                            <td><strong>@(item.DiemTongKet?.ToString("F2") ?? "-")</strong></td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.KetQua))
+                                {
+                                    var badgeClass = item.KetQua switch
+                                    {
+                                        "Giỏi" => "bg-success",
+                                        "Khá" => "bg-primary",
+                                        "Trung bình" => "bg-warning text-dark",
+                                        "Yếu" => "bg-danger",
+                                        "Kém" => "bg-dark",
+                                        _ => "bg-secondary"
+                                    };
+                                    <span class="badge @badgeClass">@item.KetQua</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#tblData").DataTable({
+                language: {
+                    emptyTable: "Chưa có điểm nào",
+                    zeroRecords: "Không tìm thấy",
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: { first: "Đầu", last: "Cuối", next: "Sau", previous: "Trước" }
+                }
+            });
+        });
+    </script>
+}

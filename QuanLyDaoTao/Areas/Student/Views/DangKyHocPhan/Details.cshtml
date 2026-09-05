@@ -1,0 +1,58 @@
+@model QuanLyDaoTao.Models.DangKyHocPhan
+
+@{
+    ViewData["Title"] = "Chi tiết đăng ký";
+}
+
+<div class="student-card">
+    <div class="student-card-header">
+        <h4><i class="bi bi-info-circle me-2"></i>Chi tiết đăng ký học phần</h4>
+    </div>
+    <div class="student-card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Mã đăng ký</label>
+                <div class="form-control bg-light">@Model.MaDangKy</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Học phần</label>
+                <div class="form-control bg-light">@Model.HocPhan?.TenHocPhan</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Môn học</label>
+                <div class="form-control bg-light">@Model.HocPhan?.MonHoc?.TenMonHoc</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Số tín chỉ</label>
+                <div class="form-control bg-light">@Model.HocPhan?.SoTinChi</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Học kỳ</label>
+                <div class="form-control bg-light">@Model.HocKy?.TenHocKy</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Ngày đăng ký</label>
+                <div class="form-control bg-light">@Model.NgayDangKy.ToString("dd/MM/yyyy HH:mm")</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-muted small">Trạng thái</label>
+                <div class="form-control bg-light">
+                    @if (Model.TrangThai == "Đã đăng ký")
+                    {
+                        <span class="badge bg-success">Đã đăng ký</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@Model.TrangThai</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a asp-action="DaDangKy" class="btn btn-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Quay lại
+            </a>
+        </div>
+    </div>
+</div>
